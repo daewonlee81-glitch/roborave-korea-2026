@@ -250,33 +250,27 @@
   }
   .about-visual {
     position: relative;
-    aspect-ratio: 4 / 3; border-radius: 20px; overflow: hidden;
-    background:
-      radial-gradient(circle at 30% 30%, rgba(200, 16, 46, 0.45), transparent 55%),
-      radial-gradient(circle at 70% 70%, rgba(200, 16, 46, 0.25), transparent 55%),
-      linear-gradient(135deg, #0a0a0a, #1a1a1a);
+    aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden;
+    background: #0a0a0a;
     box-shadow: var(--shadow-md);
+    border: 1px solid rgba(200, 16, 46, 0.15);
   }
-  .about-visual::before {
+  .about-visual iframe,
+  .about-visual video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; border: 0;
+    display: block;
+  }
+  /* Decorative ring on hover */
+  .about-visual::after {
     content: ''; position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
-    background-size: 40px 40px;
-    mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+    border-radius: 20px; pointer-events: none;
+    box-shadow: inset 0 0 0 1px rgba(200, 16, 46, 0.2);
+    transition: box-shadow .3s ease;
   }
-  .about-visual .tag {
-    position: absolute; color: #fff;
-    padding: 10px 14px; border-radius: 12px;
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.15);
-    font-size: 13px; font-weight: 500;
+  .about-visual:hover::after {
+    box-shadow: inset 0 0 0 2px rgba(200, 16, 46, 0.4);
   }
-  .about-visual .tag.t1 { top: 18%; left: 10%; border-color: rgba(200, 16, 46, 0.4); }
-  .about-visual .tag.t2 { top: 44%; right: 10%; }
-  .about-visual .tag.t3 { bottom: 18%; left: 18%; border-color: rgba(200, 16, 46, 0.4); }
 
   /* Programs */
   .programs { background: var(--bg-soft); position: relative; }
@@ -480,7 +474,9 @@
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
   .reveal.in { opacity: 1; transform: none; }
 
-  /* Responsive */
+  /* ===== Responsive ===== */
+
+  /* Tablet & below (≤ 900px) */
   @media (max-width: 900px) {
     .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     .cards { grid-template-columns: 1fr; }
@@ -492,15 +488,151 @@
     .menu-toggle { display: inline-flex; }
     nav ul.open {
       display: flex; flex-direction: column; gap: 18px;
-      position: absolute; left: 0; right: 0; top: 76px;
+      position: absolute; left: 0; right: 0; top: 64px;
       background: #fff; border-bottom: 1px solid var(--line);
       padding: 20px 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
     }
-    section { padding: 80px 0; }
-    .hero { padding: 80px 0 60px; }
+    section { padding: 72px 0; }
+    .hero { padding: 64px 0 56px; }
     .contact-form .row { grid-template-columns: 1fr; }
     .nav .btn-primary { display: none !important; }
-    .logo-main { font-size: 22px; }
+    .blog-notice { padding: 20px 22px; }
+  }
+
+  /* Mobile (≤ 640px) */
+  @media (max-width: 640px) {
+    :root { --container: 100%; }
+    .container { padding: 0 18px; }
+
+    /* Header & Logo */
+    .nav { height: 64px; }
+    .logo-main { font-size: 20px; }
+    .logo-sub { margin-left: 6px; }
+    .logo-sub .korea { font-size: 11px; letter-spacing: 0.08em; }
+    .logo-sub .tag { font-size: 8px; }
+
+    /* Hero */
+    .hero { padding: 48px 0 48px; }
+    .hero .eyebrow {
+      padding: 5px 11px; font-size: 11px; margin-bottom: 18px;
+    }
+    .hero h1 { font-size: 38px; line-height: 1.08; margin-bottom: 14px; }
+    .hero p.lead { font-size: 15px; margin-bottom: 28px; }
+    .hero .cta { gap: 10px; }
+    .btn { padding: 12px 18px; font-size: 14px; width: 100%; justify-content: center; }
+    .hero .cta .btn { flex: 1 1 auto; }
+    .contact-form .btn { width: auto; }
+
+    /* Stats */
+    .stats {
+      margin-top: 44px; padding-top: 28px; gap: 20px 16px;
+    }
+    .stat .n { font-size: 26px; }
+    .stat .l { font-size: 12px; }
+
+    /* Sections */
+    section { padding: 56px 0; }
+    .section-head { margin-bottom: 40px; }
+    .section-head .kicker { font-size: 11px; letter-spacing: 0.1em; margin-bottom: 10px; }
+    .section-head .kicker::before,
+    .section-head .kicker::after { width: 16px; }
+    .section-head h2 { font-size: 26px; line-height: 1.2; }
+    .section-head p { font-size: 15px; }
+
+    /* About */
+    .about-grid { gap: 28px; }
+    .about-grid h3 { font-size: 22px; }
+    .about-grid p { font-size: 15px; }
+    .about-visual { aspect-ratio: 4 / 3; border-radius: 16px; }
+    .about-visual .tag { font-size: 11px; padding: 7px 10px; border-radius: 9px; }
+
+    /* Cards */
+    .cards { gap: 16px; }
+    .card { padding: 24px 22px; }
+    .card .icon { width: 40px; height: 40px; margin-bottom: 16px; }
+    .card h3 { font-size: 18px; }
+    .card p { font-size: 14.5px; }
+
+    /* Features */
+    .features-grid { grid-template-columns: 1fr; gap: 12px; }
+    .feature { padding: 20px 22px; }
+    .feature .num { font-size: 12px; margin-bottom: 6px; }
+
+    /* CTA Banner */
+    .cta-banner { padding: 32px 24px; border-radius: 16px; }
+    .cta-banner h3 { font-size: 22px; }
+    .cta-banner p { font-size: 14px; }
+    .cta-banner .btn { width: 100%; }
+
+    /* Blog Notice */
+    .blog-notice {
+      flex-direction: column; align-items: stretch;
+      padding: 18px 20px; gap: 14px;
+    }
+    .blog-notice .bn-link {
+      width: 100%; justify-content: center; padding: 11px 16px;
+    }
+
+    /* Contact */
+    .contact-grid { gap: 28px; }
+    .contact-info .item { padding: 14px 0; gap: 12px; }
+    .contact-info .ico { width: 38px; height: 38px; }
+    .contact-info h4 { font-size: 14px; }
+    .contact-info p { font-size: 14px; }
+    form.contact-form { padding: 24px 22px; border-radius: 14px; }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 14px; font-size: 16px; /* 16px prevents iOS zoom */
+    }
+
+    /* Footer */
+    footer { padding: 36px 0 24px; }
+    footer .footer-top { gap: 24px; padding-bottom: 24px; }
+    footer h5 { font-size: 12px; margin-bottom: 12px; }
+    footer ul li { font-size: 13.5px; }
+    .footer-bot {
+      flex-direction: column; align-items: flex-start; gap: 8px;
+      font-size: 12.5px; padding-top: 20px;
+    }
+
+    /* Mobile menu reposition */
+    nav ul.open { top: 64px; }
+  }
+
+  /* Small mobile (≤ 400px) */
+  @media (max-width: 400px) {
+    .container { padding: 0 14px; }
+    .nav { height: 60px; }
+    .logo-main { font-size: 18px; }
+    .logo-sub .korea { font-size: 10px; }
+    .logo-sub .tag { display: none; } /* tagline hidden on tiny screens */
+
+    .hero { padding: 40px 0 40px; }
+    .hero h1 { font-size: 32px; }
+    .hero p.lead { font-size: 14.5px; }
+
+    .stats { grid-template-columns: repeat(2, 1fr); gap: 18px 12px; }
+    .stat .n { font-size: 24px; }
+
+    .section-head h2 { font-size: 23px; }
+    .about-grid h3 { font-size: 20px; }
+    .cta-banner { padding: 28px 20px; }
+    .cta-banner h3 { font-size: 20px; }
+  }
+
+  /* Landscape phone: reduce vertical padding */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .hero { padding: 40px 0; }
+    section { padding: 48px 0; }
+  }
+
+  /* Safe-area support for notched phones */
+  @supports (padding: max(0px)) {
+    .container {
+      padding-left: max(18px, env(safe-area-inset-left));
+      padding-right: max(18px, env(safe-area-inset-right));
+    }
   }
 </style>
 </head>
