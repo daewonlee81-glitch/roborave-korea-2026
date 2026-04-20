@@ -77,11 +77,30 @@
     height: 76px;
   }
 
-  /* Logo (text-based, matches brand image) */
+  /* Logo (image-based, with text fallback) */
   .logo {
     display: inline-flex; align-items: center; gap: 0;
     letter-spacing: -0.02em;
     font-family: 'Inter', 'Pretendard', sans-serif;
+    text-decoration: none;
+  }
+  .logo-img {
+    height: 44px; width: auto; display: block;
+    transition: transform .2s ease;
+  }
+  .logo:hover .logo-img { transform: scale(1.02); }
+  /* Footer logo: dark background needs a light pill for readability */
+  footer .f-logo .logo {
+    background: #fff; padding: 10px 16px; border-radius: 12px;
+    display: inline-flex; box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  }
+  footer .f-logo .logo-img { height: 48px; }
+  @media (max-width: 640px) {
+    .logo-img { height: 36px; }
+    footer .f-logo .logo-img { height: 40px; }
+  }
+  @media (max-width: 400px) {
+    .logo-img { height: 32px; }
   }
   .logo-main {
     font-weight: 900; font-size: 26px; line-height: 1;
@@ -709,13 +728,17 @@
 
 <header>
   <div class="container nav">
-    <a href="#top" class="logo" aria-label="RoboRAVE Korea">
-      <span class="logo-main">
-        <span class="robo">Robo</span><span class="rave">RAVE</span>
-      </span>
-      <span class="logo-sub">
-        <span class="korea">Korea</span>
-        <span class="tag">A Collaborative Robotics Program</span>
+    <a href="#top" class="logo" aria-label="RoboRAVE Korea 홈으로">
+      <img src="roboravekorea-logo.png" alt="RoboRAVE Korea" class="logo-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" />
+      <span class="logo-text" style="display:none; align-items:center;">
+        <span class="logo-main">
+          <span class="robo">Robo</span><span class="rave">RAVE</span>
+        </span>
+        <span class="logo-sub">
+          <span class="korea">Korea</span>
+          <span class="tag">A Collaborative Robotics Program</span>
+        </span>
       </span>
     </a>
     <nav>
@@ -1090,12 +1113,16 @@
     <div class="footer-top">
       <div class="f-logo">
         <div class="logo" aria-label="RoboRAVE Korea">
-          <span class="logo-main">
-            <span class="robo">Robo</span><span class="rave">RAVE</span>
-          </span>
-          <span class="logo-sub">
-            <span class="korea">Korea</span>
-            <span class="tag">A Collaborative Robotics Program</span>
+          <img src="roboravekorea-logo.png" alt="RoboRAVE Korea" class="logo-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" />
+          <span class="logo-text" style="display:none; align-items:center;">
+            <span class="logo-main">
+              <span class="robo">Robo</span><span class="rave">RAVE</span>
+            </span>
+            <span class="logo-sub">
+              <span class="korea">Korea</span>
+              <span class="tag">A Collaborative Robotics Program</span>
+            </span>
           </span>
         </div>
         <p class="f-desc">
