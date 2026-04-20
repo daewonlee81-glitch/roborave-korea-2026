@@ -310,6 +310,52 @@
     margin: 0; color: var(--ink-soft); font-size: 15px;
   }
 
+  /* Partners */
+  .partners {
+    background: #fff; position: relative; overflow: hidden;
+  }
+  .partners-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+  }
+  .partner-card {
+    display: grid; grid-template-columns: 120px 1fr; gap: 22px; align-items: center;
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 26px 28px; position: relative; overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .partner-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--brand); transform: scaleY(0); transform-origin: top;
+    transition: transform .3s ease;
+  }
+  .partner-card:hover {
+    transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: #d9d0d0;
+  }
+  .partner-card:hover::before { transform: scaleY(1); }
+  .partner-emblem {
+    width: 120px; height: 80px; border-radius: 14px;
+    display: grid; place-items: center;
+    background: #fff;
+    border: 1px solid var(--line);
+    color: var(--brand); font-weight: 800; font-size: 18px; letter-spacing: 0.02em;
+    font-family: 'Inter', sans-serif;
+    padding: 6px;
+  }
+  .partner-emblem img,
+  .partner-emblem svg {
+    max-width: 100%; max-height: 100%; object-fit: contain; display: block;
+  }
+  .partner-body h4 {
+    margin: 0 0 6px; font-size: 17px; font-weight: 800; color: var(--ink); letter-spacing: -0.01em;
+  }
+  .partner-body .partner-en {
+    display: block; color: var(--muted); font-size: 12.5px; letter-spacing: 0.02em;
+    text-transform: uppercase; margin-bottom: 8px; font-weight: 600;
+  }
+  .partner-body p {
+    margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.55;
+  }
+
   /* Features strip */
   .features-grid {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
@@ -480,6 +526,7 @@
   @media (max-width: 900px) {
     .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     .cards { grid-template-columns: 1fr; }
+    .partners-grid { grid-template-columns: 1fr; }
     .features-grid { grid-template-columns: repeat(2, 1fr); }
     .stats { grid-template-columns: repeat(2, 1fr); gap: 28px; }
     .cta-banner { flex-direction: column; align-items: flex-start; padding: 40px; }
@@ -552,6 +599,18 @@
     .card .icon { width: 40px; height: 40px; margin-bottom: 16px; }
     .card h3 { font-size: 18px; }
     .card p { font-size: 14.5px; }
+
+    /* Partners */
+    .partners-grid { gap: 14px; }
+    .partner-card {
+      grid-template-columns: 92px 1fr; gap: 16px; padding: 20px 20px;
+    }
+    .partner-emblem {
+      width: 92px; height: 62px; border-radius: 10px; font-size: 14px; padding: 4px;
+    }
+    .partner-body h4 { font-size: 16px; }
+    .partner-body .partner-en { font-size: 11.5px; }
+    .partner-body p { font-size: 13.5px; }
 
     /* Features */
     .features-grid { grid-template-columns: 1fr; gap: 12px; }
@@ -651,6 +710,7 @@
     <nav>
       <ul id="menu">
         <li><a href="#about">소개</a></li>
+        <li><a href="#partners">협력 기관</a></li>
         <li><a href="#programs">프로그램</a></li>
         <li><a href="#why">특징</a></li>
         <li><a href="#contact">문의</a></li>
@@ -731,6 +791,103 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
             referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="partners" class="partners">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="kicker">Partners</div>
+        <h2>함께하는 기관</h2>
+        <p>RoboRAVE Korea는 국제 로봇 교육·청소년 네트워크와 협력하여 운영됩니다.</p>
+      </div>
+
+      <div class="partners-grid">
+        <div class="partner-card reveal">
+          <div class="partner-emblem" aria-label="IREA 로고">
+            <!-- irea-logo.png 파일을 리포에 올리면 자동으로 이미지가 표시됩니다.
+                 파일이 없을 경우 아래 SVG 로고가 대신 표시됩니다. -->
+            <img src="irea-logo.png" alt="IREA 로고"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+            <svg viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IREA Logo" style="display:none;">
+              <defs>
+                <linearGradient id="ireaSilver" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#c8c8c8"/>
+                  <stop offset="50%" stop-color="#8a8a8a"/>
+                  <stop offset="100%" stop-color="#545454"/>
+                </linearGradient>
+                <path id="ireaCurve" d="M 12,78 Q 110,140 208,78" fill="none"/>
+              </defs>
+              <!-- Oval border -->
+              <ellipse cx="110" cy="62" rx="102" ry="48" fill="#fff" stroke="#1a1a1a" stroke-width="1.4"/>
+              <!-- Red + blue swoosh -->
+              <path d="M 25 82 Q 110 58 195 82" stroke="#C8102E" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+              <path d="M 25 90 Q 110 75 195 90" stroke="#0b3d91" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.85"/>
+              <!-- IREA text -->
+              <text x="110" y="62" text-anchor="middle"
+                    font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900"
+                    font-size="36" letter-spacing="1.5" dominant-baseline="middle">
+                <tspan fill="#C8102E" font-style="italic">I</tspan><tspan fill="url(#ireaSilver)">REA</tspan>
+              </text>
+              <!-- Curved bottom text -->
+              <text font-family="Arial,sans-serif" font-size="10" font-weight="600"
+                    fill="#1a1a1a" letter-spacing="0.4">
+                <textPath href="#ireaCurve" startOffset="50%" text-anchor="middle">
+                  International Robotics Educational Association
+                </textPath>
+              </text>
+            </svg>
+          </div>
+          <div class="partner-body">
+            <h4>국제로봇교육협의회</h4>
+            <span class="partner-en">International Robotics Educational Association · IREA</span>
+            <p>
+              로봇 공학 및 STEAM 교육의 글로벌 표준을 연구하고 보급하는
+              국제 협의체로, 교육 커리큘럼과 대회 규정의 공신력을 뒷받침합니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="partner-card reveal">
+          <div class="partner-emblem" aria-label="IYRA 로고">
+            <!-- iyra-logo.png 파일을 리포에 올리면 자동으로 이미지가 표시됩니다. -->
+            <img src="iyra-logo.png" alt="IYRA 로고"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+            <svg viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IYRA Logo" style="display:none;">
+              <defs>
+                <linearGradient id="iyraSilver" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#c8c8c8"/>
+                  <stop offset="50%" stop-color="#8a8a8a"/>
+                  <stop offset="100%" stop-color="#545454"/>
+                </linearGradient>
+                <path id="iyraCurve" d="M 12,78 Q 110,140 208,78" fill="none"/>
+              </defs>
+              <ellipse cx="110" cy="62" rx="102" ry="48" fill="#fff" stroke="#1a1a1a" stroke-width="1.4"/>
+              <path d="M 25 82 Q 110 58 195 82" stroke="#C8102E" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+              <path d="M 25 90 Q 110 75 195 90" stroke="#0b3d91" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.85"/>
+              <text x="110" y="62" text-anchor="middle"
+                    font-family="'Arial Black','Helvetica Neue',sans-serif" font-weight="900"
+                    font-size="36" letter-spacing="1.5" dominant-baseline="middle">
+                <tspan fill="#C8102E" font-style="italic">I</tspan><tspan fill="url(#iyraSilver)">YRA</tspan>
+              </text>
+              <text font-family="Arial,sans-serif" font-size="10" font-weight="600"
+                    fill="#1a1a1a" letter-spacing="0.4">
+                <textPath href="#iyraCurve" startOffset="50%" text-anchor="middle">
+                  International Youth Robotics Association
+                </textPath>
+              </text>
+            </svg>
+          </div>
+          <div class="partner-body">
+            <h4>국제청소년로봇연맹</h4>
+            <span class="partner-en">International Youth Robotics Association · IYRA</span>
+            <p>
+              전 세계 청소년 로봇 활동가와 팀을 연결하는 국제 네트워크로,
+              교류 프로그램과 국제 대회 참가 기회를 함께 지원합니다.
+            </p>
+          </div>
         </div>
       </div>
     </div>
