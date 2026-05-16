@@ -1,0 +1,32 @@
+# robots.txt for RoboRAVE Korea
+# https://roborave-korea.co.kr
+
+User-agent: *
+Allow: /
+
+# Korean search engines
+User-agent: Yeti
+Allow: /
+
+User-agent: NaverBot
+Allow: /
+
+User-agent: Daum
+Allow: /
+
+User-agent: Daumoa
+Allow: /
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Sitemap
+Sitemap: https://roborave-korea.co.kr/sitemap.xml
