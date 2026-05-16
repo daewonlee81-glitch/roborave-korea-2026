@@ -388,6 +388,214 @@
     margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.55;
   }
 
+  /* Results / 2026 대회 결과 */
+  .results { background: #fff; position: relative; overflow: hidden; }
+  .results-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    background: var(--ink); border-radius: 18px;
+    padding: 28px 8px; margin-bottom: 36px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+  }
+  .results-stat {
+    text-align: center; padding: 8px 12px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    color: #fff;
+  }
+  .results-stat:last-child { border-right: 0; }
+  .results-stat .n {
+    font-family: 'Inter','Pretendard',sans-serif;
+    font-size: 36px; font-weight: 900; letter-spacing: -0.03em;
+    line-height: 1; margin-bottom: 6px;
+    background: linear-gradient(180deg, #fff 0%, #E22238 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .results-stat .l {
+    font-size: 12.5px; color: #b8b8b8; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .results-cta {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 36px;
+  }
+  .results-gallery {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 1fr 1fr;
+    gap: 12px; margin-bottom: 36px;
+    border-radius: 18px; overflow: hidden;
+  }
+  .results-photo {
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, var(--bg-soft), #ececec);
+    aspect-ratio: 4/3;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+  .results-photo:nth-child(1) {
+    grid-row: 1 / 3; aspect-ratio: auto;
+  }
+  .results-photo img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .4s ease;
+  }
+  .results-photo:hover img { transform: scale(1.04); }
+  .results-photo .placeholder-text {
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    color: var(--muted); font-size: 13px; text-align: center;
+    padding: 18px;
+  }
+  .results-photo .pcaption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 16px 18px 14px;
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.7));
+    color: #fff; font-size: 13px; font-weight: 600;
+    pointer-events: none;
+  }
+  .winners-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  }
+  .winner-card {
+    background: #fff; border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 24px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    position: relative; overflow: hidden;
+  }
+  .winner-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    background: var(--brand);
+  }
+  .winner-card:hover {
+    transform: translateY(-2px); box-shadow: var(--shadow-md);
+    border-color: rgba(200, 16, 46, 0.25);
+  }
+  .winner-card .wevent {
+    font-size: 12.5px; color: var(--brand); font-weight: 800;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .winner-card .wsub {
+    font-size: 13px; color: var(--muted); margin-bottom: 14px;
+  }
+  .winner-card ol {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .winner-card li {
+    display: grid; grid-template-columns: 36px 1fr; gap: 12px;
+    align-items: center;
+    padding: 8px 0; border-top: 1px dashed var(--line);
+  }
+  .winner-card li:first-child { border-top: 0; }
+  .winner-card .rank {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: grid; place-items: center;
+    font-weight: 800; font-size: 13px;
+    background: var(--bg-soft); color: var(--ink);
+  }
+  .winner-card li.gold .rank {
+    background: linear-gradient(135deg, #f4c430, #c89111); color: #fff;
+  }
+  .winner-card li.silver .rank {
+    background: linear-gradient(135deg, #d9d9d9, #9a9a9a); color: #fff;
+  }
+  .winner-card li.bronze .rank {
+    background: linear-gradient(135deg, #cd7f32, #8b5a2b); color: #fff;
+  }
+  .winner-card .team {
+    font-weight: 700; color: var(--ink); font-size: 15px; line-height: 1.2;
+    margin-bottom: 2px;
+  }
+  .winner-card .player {
+    font-size: 12.5px; color: var(--ink-soft); line-height: 1.3;
+  }
+
+  /* Rules / 대회 규정 */
+  .rules { background: var(--bg-soft); }
+  .rules-notice {
+    background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--brand);
+    border-radius: 12px; padding: 18px 22px; margin-bottom: 28px;
+    color: var(--ink-soft); font-size: 14.5px; line-height: 1.65;
+  }
+  .rules-notice strong { color: var(--ink); }
+  .rules-accordion details {
+    background: #fff; border: 1px solid var(--line); border-radius: 14px;
+    margin-bottom: 12px; overflow: hidden;
+    transition: box-shadow .25s ease, border-color .25s ease;
+  }
+  .rules-accordion details[open] {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(200, 16, 46, 0.25);
+  }
+  .rules-accordion summary {
+    list-style: none; cursor: pointer;
+    padding: 20px 24px;
+    display: flex; align-items: center; gap: 16px;
+    font-weight: 700; color: var(--ink);
+  }
+  .rules-accordion summary::-webkit-details-marker { display: none; }
+  .rules-accordion summary::after {
+    content: '+'; margin-left: auto;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--brand-50); color: var(--brand);
+    display: grid; place-items: center;
+    font-size: 20px; font-weight: 700;
+    transition: transform .25s ease, background .25s ease;
+    flex-shrink: 0;
+  }
+  .rules-accordion details[open] summary::after {
+    content: '−'; background: var(--brand); color: #fff;
+  }
+  .rules-num {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--brand); color: #fff;
+    display: grid; place-items: center;
+    font-weight: 800; font-size: 14px;
+    flex-shrink: 0;
+  }
+  .rules-title { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .rules-title strong { font-size: 17px; color: var(--ink); font-weight: 800; letter-spacing: -0.01em; }
+  .rules-title .rules-en { font-size: 12.5px; color: var(--muted); font-weight: 500; letter-spacing: 0.02em; }
+  .rules-body {
+    padding: 4px 28px 28px; border-top: 1px solid var(--line);
+  }
+  .rules-body h5 {
+    margin: 24px 0 8px;
+    font-size: 13px; font-weight: 800; color: var(--brand);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .rules-body h5:first-child { margin-top: 18px; }
+  .rules-body p { margin: 0 0 8px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.7; }
+  .rules-body ul { margin: 0 0 8px; padding-left: 20px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.7; }
+  .rules-body ul ul { margin: 4px 0; }
+  .rules-body strong { color: var(--ink); }
+  .rules-body table {
+    width: 100%; border-collapse: collapse;
+    font-size: 13.5px; margin: 10px 0 14px;
+    background: #fff;
+  }
+  .rules-body th, .rules-body td {
+    border: 1px solid var(--line); padding: 9px 12px; text-align: center;
+  }
+  .rules-body th {
+    background: var(--bg-soft); font-weight: 700; color: var(--ink);
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .rules-body td:first-child, .rules-body th:first-child { text-align: left; }
+  .rules-divisions {
+    display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 10px;
+  }
+  .rules-tag {
+    background: var(--brand-50); color: var(--brand);
+    border: 1px solid rgba(200, 16, 46, 0.18);
+    padding: 4px 11px; border-radius: 999px;
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.04em;
+  }
+  .rules-warn {
+    background: rgba(255, 200, 0, 0.08);
+    border-left: 3px solid #d4a017;
+    padding: 10px 14px; border-radius: 6px;
+    margin: 8px 0 12px;
+    font-size: 13.5px; color: #6a4d00;
+  }
+  .rules-warn strong { color: #4a3700; }
+
   /* Features strip */
   .features-grid {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
@@ -632,6 +840,39 @@
     .card h3 { font-size: 18px; }
     .card p { font-size: 14.5px; }
 
+    /* Results */
+    .results-stats {
+      grid-template-columns: repeat(2, 1fr); gap: 0;
+      padding: 20px 4px; border-radius: 14px;
+    }
+    .results-stat {
+      border-right: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 14px 8px;
+    }
+    .results-stat:nth-child(2) { border-right: 0; }
+    .results-stat:nth-child(3), .results-stat:nth-child(4) { border-bottom: 0; }
+    .results-stat .n { font-size: 26px; }
+    .results-stat .l { font-size: 10.5px; }
+    .results-gallery {
+      grid-template-columns: 1fr 1fr; grid-template-rows: auto;
+      gap: 8px; border-radius: 12px;
+    }
+    .results-photo:nth-child(1) { grid-column: 1 / 3; grid-row: auto; aspect-ratio: 16/10; }
+    .winners-grid { grid-template-columns: 1fr; gap: 12px; }
+
+    /* Rules */
+    .rules-accordion summary { padding: 16px 16px; gap: 12px; }
+    .rules-num { width: 30px; height: 30px; font-size: 12.5px; border-radius: 8px; }
+    .rules-title strong { font-size: 15px; }
+    .rules-title .rules-en { font-size: 11.5px; }
+    .rules-accordion summary::after { width: 26px; height: 26px; font-size: 17px; }
+    .rules-body { padding: 4px 16px 22px; }
+    .rules-body p, .rules-body ul { font-size: 13.5px; }
+    .rules-body table { font-size: 12.5px; display: block; overflow-x: auto; white-space: nowrap; }
+    .rules-body th, .rules-body td { padding: 7px 9px; }
+    .rules-notice { padding: 14px 16px; font-size: 13.5px; }
+
     /* Partners */
     .partners-grid { gap: 14px; }
     .partner-card {
@@ -748,7 +989,8 @@
         <li><a href="#about">소개</a></li>
         <li><a href="#partners">협력 기관</a></li>
         <li><a href="#programs">프로그램</a></li>
-        <li><a href="#why">특징</a></li>
+        <li><a href="#results">2026 결과</a></li>
+        <li><a href="#rules">규정</a></li>
         <li><a href="#contact">문의</a></li>
       </ul>
     </nav>
@@ -973,13 +1215,1014 @@
           </div>
           <div>
             <div class="bn-label">Official Blog</div>
-            <div class="bn-msg">종목별 자세한 안내는 공식 블로그를 참고해 주세요.</div>
+            <div class="bn-msg"><strong>종목별 자세한 안내</strong> 및 <strong>세계대회 참가 정보</strong>는 공식 블로그를 참고해 주세요.</div>
           </div>
         </div>
         <a class="bn-link" href="https://blog.naver.com/robot-league" target="_blank" rel="noopener">
           blog.naver.com/robot-league
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="results" class="results">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="kicker">Results</div>
+        <h2>RoboRave Korea Open 2026 — 종합 결과</h2>
+        <p>전국 96팀 128명이 7개 종목에서 경합한 첫 공식 대회의 모든 결과를 한곳에 정리했습니다.</p>
+      </div>
+
+      <!-- Stats Banner -->
+      <div class="results-stats reveal">
+        <div class="results-stat">
+          <div class="n">7</div>
+          <div class="l">종목 Events</div>
+        </div>
+        <div class="results-stat">
+          <div class="n">96</div>
+          <div class="l">참가팀 Teams</div>
+        </div>
+        <div class="results-stat">
+          <div class="n">128</div>
+          <div class="l">선수 Players</div>
+        </div>
+        <div class="results-stat">
+          <div class="n">3</div>
+          <div class="l">부문 Divisions</div>
+        </div>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="results-cta reveal">
+        <a href="https://daewonlee81-glitch.github.io/roborave-korea-dashboard/" target="_blank" rel="noopener" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+          라이브 경기 결과 대시보드
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </a>
+        <a href="results-2026.pdf" target="_blank" rel="noopener" class="btn btn-dark">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/><line x1="12" y1="12" x2="12" y2="18"/></svg>
+          종합 결과 보고서 (PDF)
+        </a>
+      </div>
+
+      <!-- Photo Gallery -->
+      <div class="results-gallery reveal">
+        <div class="results-photo">
+          <img src="results-2026-1.jpg" alt="시상식 - 서울교육대학교 컨벤션 홀"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />
+          <div class="placeholder-text" style="display:none;">시상식 사진<br><small style="opacity:.6">results-2026-1.jpg</small></div>
+          <div class="pcaption">시상식 · 서울교육대학교 컨벤션 홀</div>
+        </div>
+        <div class="results-photo">
+          <img src="results-2026-2.jpg" alt="Junior 부문 경기 진행 모습"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />
+          <div class="placeholder-text" style="display:none;">Junior 경기 현장<br><small style="opacity:.6">results-2026-2.jpg</small></div>
+          <div class="pcaption">Junior 부문 경기</div>
+        </div>
+        <div class="results-photo">
+          <img src="results-2026-3.jpg" alt="SumoBot 경기 매치"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />
+          <div class="placeholder-text" style="display:none;">SumoBot 경기<br><small style="opacity:.6">results-2026-3.jpg</small></div>
+          <div class="pcaption">SumoBot 매치 진행</div>
+        </div>
+        <div class="results-photo">
+          <img src="results-2026-4.jpg" alt="수상 선수"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />
+          <div class="placeholder-text" style="display:none;">수상 선수<br><small style="opacity:.6">results-2026-4.jpg</small></div>
+          <div class="pcaption">메달리스트</div>
+        </div>
+      </div>
+
+      <h3 style="font-size:22px; font-weight:800; letter-spacing:-0.01em; margin:24px 0 18px; color:var(--ink);">종목별 우승팀</h3>
+
+      <div class="winners-grid">
+
+        <!-- SUMO Spike Junior -->
+        <div class="winner-card reveal">
+          <div class="wevent">SUMO Spike Junior</div>
+          <div class="wsub">초등부 · 16강 → 결승</div>
+          <ol>
+            <li class="gold"><div class="rank">1st</div><div><div class="team">날쏀돌이</div><div class="player">김민호 (서울서일초 3), 김동윤 (잠원초 3)</div></div></li>
+            <li class="silver"><div class="rank">2nd</div><div><div class="team">임주원</div><div class="player">임주원 (산성초 6)</div></div></li>
+            <li class="bronze"><div class="rank">3rd</div><div><div class="team">정찬희</div><div class="player">정찬희 (산성초 4)</div></div></li>
+            <li><div class="rank">4th</div><div><div class="team">대회어렵당</div><div class="player">주호겸 (구룡초 6)</div></div></li>
+          </ol>
+        </div>
+
+        <!-- SUMO Open Junior -->
+        <div class="winner-card reveal">
+          <div class="wevent">SUMO Open Junior</div>
+          <div class="wsub">초등부 · 4강 → 결승</div>
+          <ol>
+            <li class="gold"><div class="rank">1st</div><div><div class="team">커비</div><div class="player">조연우 (성남정자초 4)</div></div></li>
+            <li class="silver"><div class="rank">2nd</div><div><div class="team">크레스티드개코</div><div class="player">임지후 (내정초 6)</div></div></li>
+            <li class="bronze"><div class="rank">3rd</div><div><div class="team">마법사탕지팡이</div><div class="player">송은호 (대장초 4)</div></div></li>
+            <li><div class="rank">4th</div><div><div class="team">메타나이트</div><div class="player">이유준 (초림초 4)</div></div></li>
+          </ol>
+        </div>
+
+        <!-- SUMO Spike Senior -->
+        <div class="winner-card reveal">
+          <div class="wevent">SUMO Spike Senior</div>
+          <div class="wsub">중·고등부 · 4강 → 결승</div>
+          <ol>
+            <li class="gold"><div class="rank">1st</div><div><div class="team">아이콘 김도율</div><div class="player">김도율 (청라달튼외국인학교 8)</div></div></li>
+            <li class="silver"><div class="rank">2nd</div><div><div class="team">임지수</div><div class="player">임지수 (솔밭중 2)</div></div></li>
+            <li class="bronze"><div class="rank">3rd</div><div><div class="team">Noname</div><div class="player">전경훈 (방배중 1), 류온세 (홈스쿨)</div></div></li>
+            <li><div class="rank">4th</div><div><div class="team">박송주</div><div class="player">박송주 (금천중 2)</div></div></li>
+          </ol>
+        </div>
+
+        <!-- SUMO Open Senior -->
+        <div class="winner-card reveal">
+          <div class="wevent">SUMO Open Senior</div>
+          <div class="wsub">중·고등부 · 4강 → 결승</div>
+          <ol>
+            <li class="gold"><div class="rank">1st</div><div><div class="team">시우</div><div class="player">박시우 (페이스튼)</div></div></li>
+            <li class="silver"><div class="rank">2nd</div><div><div class="team">Gen.G</div><div class="player">강현우 (광교중 2)</div></div></li>
+            <li class="bronze"><div class="rank">3rd</div><div><div class="team">F1</div><div class="player">이하진 (신백현중 1)</div></div></li>
+            <li><div class="rank">4th</div><div><div class="team">hammers</div><div class="player">정하람·하다빈·김태경 (마이폴학교)</div></div></li>
+          </ol>
+        </div>
+
+        <!-- Line Follow Junior -->
+        <div class="winner-card reveal">
+          <div class="wevent">Line Follow Junior</div>
+          <div class="wsub">초등부 · 최고 기록 기준</div>
+          <ol>
+            <li class="gold"><div class="rank">1st</div><div><div class="team">김태민 · 541점 (400+141)</div><div class="player">언북초 5</div></div></li>
+            <li class="silver"><div class="rank">2nd</div><div><div class="team">주도윤 · 539점 (400+139)</div><div class="player">동광초 6 · 139초</div></div></li>
+            <li class="bronze"><div class="rank">3rd</div><div><div class="team">J.J · 400점</div><div class="player">이주안 (정자초 5), 한재희 (MCA 4)</div></div></li>
+            <li><div class="rank">4th</div><div><div class="team">차윤찬 · 400점</div><div class="player">목운초 6</div></div></li>
+          </ol>
+        </div>
+
+        <!-- Line Follow Senior -->
+        <div class="winner-card reveal">
+          <div class="wevent">Line Follow Senior</div>
+          <div class="wsub">중·고등부 · 최고 기록 기준</div>
+          <ol>
+            <li class="gold"><div class="rank">1st</div><div><div class="team">천연제 · 543점 (400+143)</div><div class="player">염창중 2 · 143초</div></div></li>
+            <li class="silver"><div class="rank">2nd</div><div><div class="team">한준우 · 534점 (400+134)</div><div class="player">성남중 2 · 134초</div></div></li>
+            <li class="bronze"><div class="rank">3rd</div><div><div class="team">김은채 · 477점 (400+77)</div><div class="player">언주중 1 · 77초</div></div></li>
+            <li><div class="rank">4th</div><div><div class="team">와규 · 455점 (400+55)</div><div class="player">최재경 (죽전중 2), 안지호 (탄천초 6)</div></div></li>
+          </ol>
+        </div>
+
+        <!-- Othello -->
+        <div class="winner-card reveal" style="grid-column: 1 / -1;">
+          <div class="wevent">Othello · 오델로</div>
+          <div class="wsub">전 부문 · 4강 → 결승</div>
+          <ol>
+            <li class="gold"><div class="rank">1st</div><div><div class="team">문지안</div><div class="player">문지안 (은여울초 4)</div></div></li>
+            <li class="silver"><div class="rank">2nd</div><div><div class="team">김서은</div><div class="player">김서은 (하늘빛중 1)</div></div></li>
+            <li class="bronze"><div class="rank">3rd</div><div><div class="team">김우주</div><div class="player">김우주 (SIA 세종국제학교 6)</div></div></li>
+            <li><div class="rank">4th</div><div><div class="team">김서준</div><div class="player">김서준 (하늘빛초 5)</div></div></li>
+          </ol>
+        </div>
+
+      </div>
+
+      <div style="margin-top: 28px; padding: 18px 22px; background: var(--bg-soft); border-radius: 12px; border-left: 4px solid var(--brand); font-size: 14px; color: var(--ink-soft); line-height: 1.7;">
+        <strong style="color: var(--ink);">시상 안내</strong> · 각 종목 1위 <strong>한국로봇AI산업협회장상</strong>, 2위 <strong>국제청소년로봇연맹총재상</strong>, 3·4위 <strong>국제로봇교육협의회상</strong>이 수여됩니다.
+      </div>
+    </div>
+  </section>
+
+  <section id="rules" class="rules">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="kicker">Rules</div>
+        <h2>RoboRAVE OSAKA 2026 대회 규정</h2>
+        <p>11개 종목의 출전 자격·로봇 사양·경기 진행·채점 방법을 종목별로 정리했습니다.</p>
+      </div>
+
+      <div class="rules-notice reveal">
+        <strong>안내</strong> · 본 규정은 <a href="https://feather-rate-d12.notion.site/RoboRAVE-OSAKA-2026-world-championship-Rules-3378c6e00c2f8002818bc88a2a1e5ccd" target="_blank" rel="noopener" style="color:var(--brand); font-weight:700;">RoboRAVE OSAKA 2026 세계대회 공식 규정</a>을 RoboRAVE Korea가 한국어로 번역·정리한 자료입니다. 정식 규정은 <strong>2026년 6월 30일</strong>까지 일부 변경될 수 있으나, 로봇 제작 사양에는 영향을 주지 않습니다. 참가 구분: <strong>ES</strong> 초등 / <strong>MS</strong> 중등 / <strong>HS</strong> 고등 / <strong>UP</strong> 대학·일반.
+        <br><br>
+        📌 <strong>종목별 자세한 안내 및 세계대회 참가 정보</strong>는 공식 블로그를 참고해 주세요 → <a href="https://blog.naver.com/robot-league" target="_blank" rel="noopener" style="color:var(--brand); font-weight:700;">blog.naver.com/robot-league</a>
+      </div>
+
+      <div class="rules-accordion">
+
+        <!-- 1. a-MAZE-ing -->
+        <details class="reveal">
+          <summary>
+            <div class="rules-num">01</div>
+            <div class="rules-title">
+              <strong>a-MAZE-ing · 미로 탈출</strong>
+              <span class="rules-en">Maze Navigation Challenge</span>
+            </div>
+          </summary>
+          <div class="rules-body">
+            <h5>경기 목적</h5>
+            <p>높이가 있는 나무 미로(코스)에서 떨어지지 않고 자율주행 로봇으로 완주하는 것을 목표로 합니다. 제한 시간 내 완주 시 남은 시간에 비례한 보너스 점수가 가산됩니다.</p>
+
+            <h5>참가 구분</h5>
+            <div class="rules-divisions"><span class="rules-tag">초등 ES</span></div>
+            <p>2~4명으로 구성된 팀</p>
+
+            <h5>로봇 요구사항</h5>
+            <ul>
+              <li><strong>자율형</strong> — 외부 센서·리모컨 조작 모두 금지</li>
+              <li>플랫폼 자유 (LEGO, Arduino, 자작 등)</li>
+              <li>제작 비용 <strong>1,500 USD 이하</strong></li>
+              <li>바퀴 구성: 구동륜 2개 + 보조륜(캐스터) 1개 필수</li>
+              <li>크기: 부피 <strong>65,030 ㎤ 이하</strong></li>
+              <li>센서 제한: 미로 추적용 외부 센서(적외선·초음파) 금지 / 휠 엔코더는 허용</li>
+            </ul>
+
+            <h5>일반 규칙</h5>
+            <ul>
+              <li>경기 시간 <strong>120초(2분)</strong></li>
+              <li>시도 횟수·결선 진출(상위 8팀) 조건은 당일 이벤트 디렉터 결정</li>
+              <li>연습 자유, 단 본 경기 시도가 우선</li>
+            </ul>
+
+            <h5>종목별 규칙</h5>
+            <ul>
+              <li><strong>코스 이탈</strong>: 바퀴가 하나라도 코스를 완전히 벗어나거나 받침 지면에 닿으면 탈락</li>
+              <li><strong>재도전</strong>: 시간 내라면 출발선으로 돌아가 횟수 제한 없이 재도전 가능</li>
+            </ul>
+
+            <h5>코스 사양</h5>
+            <ul>
+              <li>재질: 파티클보드 또는 합판 (폭 24cm, 높이 2cm)</li>
+              <li>형상: 직선 구간 + −45°, −90°, −135° 코너 조합</li>
+              <li>ES 구성: 직선 4구간 + 코너 3개 (총 500점 만점)</li>
+            </ul>
+
+            <h5>채점</h5>
+            <p>앞바퀴가 각 구간의 채점 라인에 닿을 때 점수가 가산됩니다.</p>
+            <table>
+              <thead><tr><th>항목</th><th>점수</th></tr></thead>
+              <tbody>
+                <tr><td>직선 구간 완료</td><td>50점</td></tr>
+                <tr><td>코너 완료</td><td>100점</td></tr>
+                <tr><td>타임 보너스</td><td>잔여 1초당 1점 (소수점 절사)</td></tr>
+              </tbody>
+            </table>
+            <ul>
+              <li><strong>중도 종료</strong>: 시간 내 완주하지 못한 경우 통과한 가장 먼 구간까지 점수 기록</li>
+              <li><strong>완주 시</strong>: 부문 만점 + 타임 보너스</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- 2. SumoBot Lego & VEX IQ -->
+        <details class="reveal">
+          <summary>
+            <div class="rules-num">02</div>
+            <div class="rules-title">
+              <strong>SumoBot (Lego & VEX IQ) · 스모봇 (레고/VEX IQ)</strong>
+              <span class="rules-en">SumoBot — LEGO & VEX IQ Platform Only</span>
+            </div>
+          </summary>
+          <div class="rules-body">
+            <h5>경기 목적</h5>
+            <p>자율형 로봇을 제작해 도효(링) 위에서 상대 로봇을 탐색·밀어내 링 밖으로 떨어뜨리는 경기입니다.</p>
+
+            <h5>참가 구분 / 중량 제한</h5>
+            <div class="rules-divisions"><span class="rules-tag">초등 ES</span></div>
+            <ul>
+              <li>LEGO 또는 VEX IQ 전용: <strong>1kg 이하</strong></li>
+              <li>※ 등록이 5팀 미만이면 부문이 통합될 수 있음</li>
+            </ul>
+
+            <h5>로봇 요구사항</h5>
+            <ul>
+              <li>자율형 (원격조작 금지)</li>
+              <li>비용 1,500 USD 이하</li>
+              <li>크기: 최대 <strong>25cm × 18cm</strong> (높이 제한 없음 · 시작 시 측정)</li>
+              <li>가동 파츠 허용되나 상기 크기 내에 수납되어야 함</li>
+              <li>구조 제한: 망치·회전톱 등 상대 손상 의도 공격 금지 (스쿱·슬라이딩 플레이트는 허용)</li>
+              <li>특칙: <strong>순정 LEGO 또는 VEX IQ 부품만 사용</strong></li>
+            </ul>
+
+            <h5>링 사양</h5>
+            <ul>
+              <li>형상: 지름 100cm 원형 (흑/백 바닥)</li>
+              <li>가장자리: 폭 5cm 경계선 (흑/백 결정은 당일 발표)</li>
+              <li>높이: 바닥에서 50~80mm (낙하 = 패배 룰을 위한 단차)</li>
+            </ul>
+
+            <h5>경기 규칙</h5>
+            <ul>
+              <li>형식: 예선 라운드로빈</li>
+              <li>1매치 <strong>2판 선승제</strong></li>
+              <li>승점: 승리 3점 / 무승부 1점 / 패배 0점</li>
+              <li>시작: 링 반대편 흰 라인에 닿게 배치(방향 자유), 시작 후 <strong>3초 대기</strong></li>
+              <li>판정: 먼저 바닥에 닿은 쪽이 패. 60초 무승부 시 인정</li>
+              <li>로봇끼리 정체 5초 시 재시작 가능</li>
+              <li>1매치 최대 5분</li>
+              <li>심판은 동일 동작 반복 시 시간 정지 없이 재시작 명령 가능</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- 3. Open SumoBot -->
+        <details class="reveal">
+          <summary>
+            <div class="rules-num">03</div>
+            <div class="rules-title">
+              <strong>Open SumoBot · 오픈 스모봇</strong>
+              <span class="rules-en">Open Platform SumoBot</span>
+            </div>
+          </summary>
+          <div class="rules-body">
+            <h5>경기 목적</h5>
+            <p>자율형 로봇을 자유 플랫폼으로 제작해 도효에서 상대 로봇을 탐색·밀어내는 경기.</p>
+
+            <h5>부문 / 중량 제한</h5>
+            <div class="rules-divisions">
+              <span class="rules-tag">초등 ES</span>
+              <span class="rules-tag">중등 MS</span>
+              <span class="rules-tag">고등 HS</span>
+              <span class="rules-tag">대학·일반 UP</span>
+            </div>
+            <table>
+              <thead><tr><th>중량</th><th>ES</th><th>MS</th><th>HS</th><th>UP</th></tr></thead>
+              <tbody>
+                <tr><td>1 kg</td><td>◯</td><td>◯</td><td>◯</td><td>◯</td></tr>
+                <tr><td>3 kg</td><td>−</td><td>◯</td><td>◯</td><td>◯</td></tr>
+              </tbody>
+            </table>
+            <p>※ 5팀 미만 부문은 통합 가능</p>
+
+            <h5>로봇 요구사항</h5>
+            <ul>
+              <li>자율형 (모든 플랫폼 가능, 원격조작 금지)</li>
+              <li>비용 1,500 USD 이하</li>
+              <li>크기: 최대 25cm × 18cm (높이 제한 없음)</li>
+              <li>금지: 망치·회전 커터 등 의도적 파괴 장치 (스쿱·슬라이딩 플레이트는 허용)</li>
+            </ul>
+
+            <h5>링 사양</h5>
+            <ul>
+              <li>지름 100cm 원형, 가장자리 5cm 경계선, 바닥에서 50~80mm</li>
+            </ul>
+
+            <h5>경기 규칙</h5>
+            <ul>
+              <li>예선 라운드로빈, 1매치 <strong>2판 선승제</strong></li>
+              <li>승점: 승 3 / 무 1 / 패 0</li>
+              <li>1매치 <strong>3분</strong></li>
+              <li>60초간 움직임 없거나 5초간 락(lock) 상태 → 심판 판단으로 무승부/재시작</li>
+            </ul>
+
+            <h5>⚠️ 중요: 로봇 기동 프로토콜</h5>
+            <div class="rules-warn">
+              <strong>이 규칙은 매우 중요합니다.</strong> 위반 시 매치 결과에 직접 영향을 줄 수 있습니다.
+            </div>
+            <ul>
+              <li><strong>아레나 진입</strong>: 로봇을 기동할 수 있는 팀원은 <strong>1명만</strong> 가능</li>
+              <li><strong>시작 위치</strong>: 심판이 지정한 마커 위치에 배치</li>
+              <li><strong>방향</strong>: 로봇 "정면(표시한 면)"이 조작자 자신을 향하도록 링 가장자리에 배치</li>
+              <li><strong>카운트다운</strong>: 준비 완료 신호 후 심판의 3초 카운트다운으로 시작</li>
+              <li><strong>필수 동작</strong>: 기동 직후, 다른 동작(공격 등) 전에 반드시 그 자리에서 <strong>1회전(360° 이상)</strong></li>
+            </ul>
+
+            <h5>"낙하" 정의</h5>
+            <ul>
+              <li><strong>패배</strong>: 로봇 일부가 조금이라도 바닥(도효 받침 면)에 닿으면 낙하</li>
+              <li><strong>계속</strong>: 링 밖으로 튀어나와 있어도 바닥에 닿지 않으면 경기 진행</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- 4. Line Following Lego & VEX IQ -->
+        <details class="reveal">
+          <summary>
+            <div class="rules-num">04</div>
+            <div class="rules-title">
+              <strong>Line Following (Lego & VEX IQ) · 라인트레이싱 (레고/VEX IQ)</strong>
+              <span class="rules-en">Line Following — LEGO & VEX IQ Platform Only</span>
+            </div>
+          </summary>
+          <div class="rules-body">
+            <h5>경기 목적</h5>
+            <p>자율형 로봇으로 흰 바탕의 코스 위 검은 선을 따라가 타워까지 이동, 공을 전달합니다. 1왕복으로 "완주" 인정 후, 제한 시간 내 부문별 "정확한 개수"의 공을 추가 운반.</p>
+
+            <h5>참가 구분</h5>
+            <div class="rules-divisions"><span class="rules-tag">초등 ES</span></div>
+
+            <h5>로봇 요구사항</h5>
+            <ul>
+              <li>자율형 (원격 조작 금지)</li>
+              <li>접수 시 <strong>라인트레이스 + 타워 정지 실연</strong> 필요</li>
+              <li>다중 센서·프로세서 사용 가능</li>
+              <li>크기: 시작 시 부피 65,030 cm³ 이하</li>
+              <li>비용 1,500 USD 이하</li>
+              <li>특칙: 순정 LEGO 또는 VEX IQ 부품만 사용</li>
+            </ul>
+
+            <h5>코스 / 타워 사양</h5>
+            <p><strong>타워</strong>: 높이 20cm × 폭 10cm × 길이 35cm. 상부에 10cm 정사각 투입구, 뒷면은 공이 통과하도록 개방.</p>
+            <div class="rules-warn">
+              <strong>주의</strong> · 사람이 타워에 닿거나 안을 들여다보면 <strong>실격(일률 400점)</strong>. (기본 주행 완료 시 적용되며, 공 점수가 무효 처리됩니다.)
+            </div>
+            <p><strong>트랙</strong>: 120cm × 180cm. 교차로 없음, 라인 폭 1.25cm. 곡선 반경 15cm 이상, 타워 직전 20cm는 직선. 자연광 영향이 있을 수 있어 센서 캘리브레이션 필요.</p>
+
+            <h5>STEP 1: 기본 주행 (1왕복) — 최대 400점</h5>
+            <p>출발 → 타워에서 최소 1개 공 전달 → 출발지 복귀.</p>
+            <table>
+              <thead><tr><th>부문</th><th>출발</th><th>타워 정지</th><th>공 전달</th><th>복귀</th></tr></thead>
+              <tbody>
+                <tr><td>ES</td><td>50</td><td>100</td><td>100</td><td>150</td></tr>
+              </tbody>
+            </table>
+
+            <h5>STEP 2: 보너스 배달 (정확한 개수)</h5>
+            <p>기본 주행 완료 후 남은 시간 동안 추가 공 운반. 타워에서 출발지로의 복귀는 불필요합니다.</p>
+            <ul>
+              <li>목표 공 개수 (당일 발표): <strong>75 ~ 125개</strong></li>
+              <li>목표보다 <strong>적게</strong> 전달: 전달 개수 그대로 가산</li>
+              <li>목표보다 <strong>많이</strong> 전달: (목표) − (초과) = 점수</li>
+              <li>예: 목표 100개에 105개 전달 시 100 − 5 = <strong>95점</strong></li>
+            </ul>
+
+            <h5>제한시간</h5>
+            <p><strong>3분(180초)</strong></p>
+          </div>
+        </details>
+
+        <!-- 5. Line Following (Open) -->
+        <details class="reveal">
+          <summary>
+            <div class="rules-num">05</div>
+            <div class="rules-title">
+              <strong>Line Following · 라인트레이싱 (오픈 플랫폼)</strong>
+              <span class="rules-en">Open Platform Line Following</span>
+            </div>
+          </summary>
+          <div class="rules-body">
+            <h5>경기 목적</h5>
+            <p>자율형 로봇으로 흰 바탕의 코스 위 검은 선을 따라가 타워까지 이동, 공을 전달. 1왕복 완주 후 제한 시간 내 부문별 정확한 개수의 공을 추가 운반.</p>
+
+            <h5>참가 구분</h5>
+            <div class="rules-divisions">
+              <span class="rules-tag">초등 ES</span>
+              <span class="rules-tag">중등 MS</span>
+              <span class="rules-tag">고등 HS</span>
+              <span class="rules-tag">대학·일반 UP</span>
+            </div>
+
+            <h5>로봇 요구사항</h5>
+            <ul>
+              <li>자율형 (원격 조작 금지)</li>
+              <li>접수 시 라인트레이스 + 타워 정지 실연 필요</li>
+              <li>다중 센서·프로세서 사용 가능</li>
+              <li>크기: 시작 시 부피 65,030 cm³ 이하</li>
+              <li>비용 1,500 USD 이하</li>
+            </ul>
+
+            <h5>코스 / 타워 사양</h5>
+            <p><strong>타워</strong>: Lego/VEX IQ 부문과 동일.</p>
+            <p><strong>트랙</strong>: 120cm × 180cm. 부문별 난이도가 달라집니다.</p>
+            <table>
+              <thead><tr><th>부문</th><th>교차로</th><th>라인 폭</th></tr></thead>
+              <tbody>
+                <tr><td>ES</td><td>없음</td><td>1.25 cm</td></tr>
+                <tr><td>MS</td><td>1개</td><td>1.25 cm</td></tr>
+                <tr><td>HS / UP</td><td>2개</td><td>0.75 cm</td></tr>
+              </tbody>
+            </table>
+            <p>곡선 반경 15cm 이상, 타워 직전 20cm 직선. 자연광 캘리브레이션 필요.</p>
+
+            <h5>STEP 1: 기본 주행 (1왕복) — 최대 400점</h5>
+            <table>
+              <thead><tr><th>부문</th><th>출발</th><th>1차 T자</th><th>2차 T자</th><th>타워 정지</th><th>공 전달</th><th>복귀</th></tr></thead>
+              <tbody>
+                <tr><td>ES</td><td>50</td><td>−</td><td>−</td><td>100</td><td>100</td><td>150</td></tr>
+                <tr><td>MS</td><td>25</td><td>25</td><td>−</td><td>100</td><td>100</td><td>150</td></tr>
+                <tr><td>HS / UP</td><td>25</td><td>25</td><td>25</td><td>50</td><td>100</td><td>175</td></tr>
+              </tbody>
+            </table>
+
+            <h5>STEP 2: 보너스 배달 (정확한 개수)</h5>
+            <p>목표 공 개수 (당일 발표):</p>
+            <ul>
+              <li>ES: 75 ~ 125개</li>
+              <li>MS: 125 ~ 200개</li>
+              <li>HS: 200 ~ 250개</li>
+              <li>UP: 100 ~ 350개</li>
+            </ul>
+            <p>계산: 목표보다 적으면 그대로 가산 / 많으면 (목표 − 초과) = 점수</p>
+
+            <h5>제한시간</h5>
+            <p><strong>3분(180초)</strong></p>
+          </div>
+        </details>
+
+        <!-- 6. FastBot -->
+        <details class="reveal">
+          <summary>
+            <div class="rules-num">06</div>
+            <div class="rules-title">
+              <strong>FastBot · 패스트봇</strong>
+              <span class="rules-en">Fastest Line Loop Race</span>
+            </div>
+          </summary>
+          <div class="rules-body">
+            <h5>경기 목적</h5>
+            <p>흰 바탕의 검은 선을 따라 클로즈드 루프(주회 코스)를 정해진 횟수만큼 주행하는 자율형 로봇을 설계·프로그래밍합니다. 부문이 올라갈수록 교차로·복잡 라인 등 난이도 요소가 추가됩니다.</p>
+
+            <h5>참가 구분</h5>
+            <div class="rules-divisions">
+              <span class="rules-tag">초등 ES</span>
+              <span class="rules-tag">중등 MS</span>
+              <span class="rules-tag">고등 HS</span>
+            </div>
+            <p>※ 각 부문 등록이 5팀 미만이면 부문 통합 가능</p>
+
+            <h5>로봇 요구사항</h5>
+            <ul>
+              <li>자율형 (외부 조작 금지)</li>
+              <li><strong>필수 센서</strong>: 적외선(IR) 센서 사용 및 라인트레이스 코드 구현</li>
+              <li>비용 1,500 USD 이하</li>
+              <li>크기 65,030 ㎤ 이하</li>
+              <li>접수 시 테스트 트랙에서 라인트레이스 시연 필요</li>
+            </ul>
+
+            <h5>일반 규칙</h5>
+            <ul>
+              <li>제한시간 <strong>180초(3분)</strong>. 초과 시 기록은 일률 180초, 보너스 없음</li>
+              <li>경기 중 로봇 접촉 시 시도 종료, 기록 180초 처리</li>
+              <li>운용 원칙: "선수는 경기하고, 코치는 지도하며, 학부모는 응원한다"</li>
+            </ul>
+
+            <h5>부문별 코스 사양 (약 115cm × 150cm)</h5>
+            <table>
+              <thead><tr><th>부문</th><th>라인 폭</th><th>교차로</th><th>특징</th></tr></thead>
+              <tbody>
+                <tr><td>ES</td><td>1.25 cm</td><td>없음</td><td>기본 코스</td></tr>
+                <tr><td>MS</td><td>1.25 cm</td><td>최대 1개</td><td>−</td></tr>
+                <tr><td>HS</td><td>0.75 cm</td><td>최대 2개</td><td>라인이 얇아짐</td></tr>
+              </tbody>
+            </table>
+            <ul>
+              <li>라인과 코스 끝(또는 인접 라인) 간격 최소 10cm</li>
+              <li>곡선 반경 가변</li>
+              <li>자연광 환경 대응 설계 필요</li>
+            </ul>
+
+            <h5>채점</h5>
+            <ul>
+              <li><strong>측정</strong>: 출발~결승 경과 시간을 초·100분의 1초 단위(예: 3.52초)로 측정</li>
+              <li><strong>실격/시간 초과</strong>: 3분 내 미완주 또는 로봇 접촉 시 최대 시간 180.00초 기록</li>
+            </ul>
+
+            <h5>설계 팁</h5>
+            <p>이 종목은 <strong>IR(적외선) 센서 제어</strong>가 핵심입니다. 특히 상위 부문에서 점선·색 변화가 포함되므로 단순 흑백 판정 외에 자연광 변화 대응 캘리브레이션 + PID 제어 등 고급 알고리즘이 기록 단축의 관건입니다.</p>
+          </div>
+        </details>
+
+        <!-- 7. Alpine Bot Challenge -->
+        <details class="reveal">
+          <summary>
+            <div class="rules-num">07</div>
+            <div class="rules-title">
+              <strong>Alpine Bot Challenge · 알파인 봇 챌린지</strong>
+              <span class="rules-en">Ramp Climbing & Flag Placement</span>
+            </div>
+          </summary>
+          <div class="rules-body">
+            <h5>경기 목적</h5>
+            <p>자율형 로봇을 제작해 가파른 경사로(램프)를 올라 테이블 정상에 도달, 타겟 존에 깃발을 설치하는 것을 목표로 합니다. 제한 시간 내 완료 시 잔여 시간 보너스가 가산됩니다.</p>
+
+            <h5>참가 구분</h5>
+            <div class="rules-divisions">
+              <span class="rules-tag">초등 ES</span>
+              <span class="rules-tag">중등 MS</span>
+              <span class="rules-tag">고등 HS</span>
+              <span class="rules-tag">대학·일반 UP</span>
+            </div>
+            <p>※ 5팀 미만 부문은 통합 가능</p>
+
+            <h5>로봇 요구사항 & 안전 규정</h5>
+            <ul>
+              <li>자율형 (외부 조작 금지)</li>
+              <li><strong>안전 최우선</strong>: 경기 중 안전 우려 시 로봇 정지·점검·수정 요구. 수정 불가능 시 실격</li>
+              <li>금지: 비행 로봇, 보조용(2호기) 로봇</li>
+              <li>허용: 예산 내(1,500 USD 이하)에서 다중 센서·프로세서 사용 가능</li>
+              <li>크기: 시작 시 부피 65,030 ㎤ 이하, 높이 60cm 초과 불가</li>
+            </ul>
+
+            <h5>경기 규칙 / 시작 위치</h5>
+            <ul>
+              <li>제한시간 <strong>120초(2분)</strong></li>
+              <li>시작 위치:
+                <ul>
+                  <li>ES: 슬로프 발치 또는 슬로프 시작 지점에 배치하고 시작</li>
+                  <li>MS / HS / UP: 슬로프 발치에서 <strong>30cm 떨어진 출발선 뒤</strong>에서 시작</li>
+                </ul>
+              </li>
+              <li>로봇 접촉 시: 시간은 멈추지 않고 출발 위치에서 재시도</li>
+              <li>종료 신호: 팀원이 심판에게 알리면 시간 정지. 심판 지시 전 로봇 접촉 시 깃발 포인트·보너스 소실 가능</li>
+            </ul>
+
+            <h5>코스 사양</h5>
+            <ul>
+              <li><strong>슬로프</strong>: 바닥에서 높이 1m 테이블까지 연결</li>
+              <li><strong>라인</strong>: 슬로프에 "시작점·1/3·2/3·정상" 4개 검은 선</li>
+              <li><strong>타겟</strong>: 테이블 정상 중앙에 3중 동심원(불스아이)</li>
+              <li><strong>깃발</strong>: 지름 50mm 원형 베이스 부착 소형 깃발 (로봇이 운반·설치)</li>
+            </ul>
+
+            <h5>채점 (최대 300점 + 타임 보너스)</h5>
+            <p><strong>슬로프 등정 포인트</strong> — 섀시 일부가 각 라인을 넘으면 가산</p>
+            <table>
+              <thead><tr><th>부문</th><th>1/3</th><th>2/3</th><th>정상</th><th>테이블 100%</th></tr></thead>
+              <tbody>
+                <tr><td>ES</td><td>50</td><td>75</td><td>100</td><td>100</td></tr>
+                <tr><td>MS / HS / UP</td><td>40</td><td>60</td><td>80</td><td>100</td></tr>
+              </tbody>
+            </table>
+
+            <p><strong>깃발 설치 포인트</strong> — 깃발 폴 중심 위치 기준</p>
+            <table>
+              <thead><tr><th>타겟 위치</th><th>점수</th></tr></thead>
+              <tbody>
+                <tr><td>중심 (불스아이)</td><td>100점</td></tr>
+                <tr><td>내측 흰/검은 환</td><td>80 / 60점</td></tr>
+                <tr><td>외측 흰/검은 환</td><td>40 / 20점</td></tr>
+              </tbody>
+            </table>
+            <ul>
+              <li><strong>페널티</strong>: 깃발 정지 시 로봇 일부가 깃발·베이스에 닿으면 깃발 점수 <strong>50% 감점</strong></li>
+              <li><strong>타임 보너스</strong>: 깃발이 자립(베이스 아래·수직)으로 성공한 경우에만 잔여 1초당 1점</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- 8. Entrepreneurial -->
+        <details class="reveal">
+          <summary>
+            <div class="rules-num">08</div>
+            <div class="rules-title">
+              <strong>Entrepreneurial · 창업 챌린지</strong>
+              <span class="rules-en">Entrepreneurial Challenge</span>
+            </div>
+          </summary>
+          <div class="rules-body">
+            <h5>챌린지 목적</h5>
+            <p>실사회 혁신성·기술적 품질·상업적 잠재력을 갖춘 기능적 로봇 제품을 설계·개발·발표하는 팀을 평가·표창합니다. 공정성·투명성·전문 기준 확보를 위해 4인 국제 심사위원 패널이 단독 평가합니다.</p>
+            <p><strong>평가 대상</strong>: 진정한 혁신성 / 기술적 기능성 / 사회적·시장 영향력 / 비즈니스 실현 가능성 / 실행(제작) 품질</p>
+
+            <h5>부문</h5>
+            <ul>
+              <li>ES / MS: 초·중등부</li>
+              <li>HS / UP: 고등·대학·일반부</li>
+            </ul>
+            <p>※ 단일 부문 등록이 5팀 미만이면 이벤트 디렉터 판단으로 부문 통합 또는 "오픈 참가(시상 제외)" 처리 가능</p>
+
+            <h5>프로젝트 요건</h5>
+            <ul>
+              <li>명확한 <strong>Input(입력) – Process(처리) – Output(출력)</strong> 로직이 내장된 로봇 시스템</li>
+              <li>자율형 또는 원격조작형(혹은 양쪽 모두)</li>
+              <li>프로토타입 총 제작비 <strong>3,000 USD(약 45만 원)</strong> 이내</li>
+              <li>실작동 라이브 시연</li>
+              <li>제출 자료:
+                <ul>
+                  <li>마케팅 플라이어 1장</li>
+                  <li>비즈니스 모델 캔버스(BMC)</li>
+                  <li>프로모션 비디오 (HS/UP 필수, ES/MS 선택)</li>
+                  <li>팀 시각 정체성 및 브랜딩 (로고/이미지)</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h5>채점 (100점 만점)</h5>
+            <table>
+              <thead><tr><th>평가 항목</th><th>배점</th><th>내용</th></tr></thead>
+              <tbody>
+                <tr><td>1) 혁신성</td><td>25</td><td>독창성·차별화·신선한 접근</td></tr>
+                <tr><td>2) 기술적 기능성</td><td>20</td><td>확실한 작동·시스템 로직·엔지니어링</td></tr>
+                <tr><td>3) 영향력·관련성</td><td>20</td><td>실사회 문제 해결·사회·환경·경제적 가치</td></tr>
+                <tr><td>4) 비즈니스 모델</td><td>15</td><td>타겟 시장·상업적 존속·가격·가치 제안</td></tr>
+                <tr><td>5) 프레젠테이션·대화</td><td>10</td><td>명료한 설명·프로페셔널 태도·Q&A 대응</td></tr>
+                <tr><td>6) 확장성·지재권 잠재력</td><td>10</td><td>성장 가능성·특허·국제적 적용성</td></tr>
+              </tbody>
+            </table>
+
+            <h5>평가 프로세스</h5>
+            <ul>
+              <li><strong>Phase 1 — 부스 심사</strong>: 심사위원이 각 팀 부스 방문 (팀당 15분)</li>
+              <li><strong>Phase 2 — 공식 피치 세션</strong>: 5분 구조화된 발표 + 5분 Q&A</li>
+              <li><strong>Phase 3 — 비공개 심의</strong>: 심사위원 점수 확인 및 비공개 협의. 최종 순위는 합계 점수로 결정</li>
+            </ul>
+
+            <h5>동점 시 선정 순서</h5>
+            <ul>
+              <li>① "혁신성" 점수가 높은 팀</li>
+              <li>② "기술적 기능성" 점수가 높은 팀</li>
+              <li>③ 심사위원 패널 최종 투표</li>
+            </ul>
+
+            <h5>금지 사항</h5>
+            <ul>
+              <li>일반 투표로 공식 우승자 결정 금지</li>
+              <li>발표 중 등록 멤버 외 외부 도움 금지</li>
+              <li>프로젝트는 등록된 팀원이 주도적으로 개발한 것이어야 함</li>
+              <li>위반 시 실격 가능</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- 9. SoccerBot -->
+        <details class="reveal">
+          <summary>
+            <div class="rules-num">09</div>
+            <div class="rules-title">
+              <strong>SoccerBot · 사커봇</strong>
+              <span class="rules-en">Autonomous Robot Soccer</span>
+            </div>
+          </summary>
+          <div class="rules-body">
+            <h5>경기 목적</h5>
+            <p>150cm × 100cm 필드에서 2대의 로봇이 상대 골을 향해 공을 운반하는 '축구' 경기입니다. 상대 골에 공을 넣으면 득점이며, 경기 시간 내 누적 득점으로 승부를 결정합니다.</p>
+
+            <h5>참가 구분</h5>
+            <div class="rules-divisions">
+              <span class="rules-tag">초등 ES</span>
+              <span class="rules-tag">중등 MS</span>
+              <span class="rules-tag">고등 HS</span>
+            </div>
+            <p>2~4명 팀</p>
+
+            <h5>로봇 요구사항</h5>
+            <ul>
+              <li>완전 자율형 (컨트롤러 등 원격 조작 불가)</li>
+              <li>센서·프로세서 수 제한 없음</li>
+              <li><strong>2륜 구동</strong> (보조륜 제한 없으나 구동은 2륜만 허용)</li>
+              <li>크기: <strong>20cm × 20cm × 20cm 이내</strong></li>
+              <li>중량: <strong>1.5kg 이하</strong></li>
+              <li>적외선 발광 볼 사용 (볼의 1/3 이상이 로봇 안쪽으로 들어가지 않도록)</li>
+            </ul>
+
+            <h5>경기 규칙</h5>
+            <ul>
+              <li>1플레이 <strong>5분</strong> (참가팀 수에 따라 변경 가능)</li>
+              <li>코인토스로 킥오프 권 결정. 권을 가진 팀이 센터 서클 안에 로봇 배치, 상대는 바깥에 배치</li>
+              <li>시작점에 공 놓고 심판 신호와 동시에 로봇 시동</li>
+              <li>득점 발생 시 득점된 팀이 킥오프 권 획득 후 재시작</li>
+              <li>플레이 시작 후 득점 또는 심판 정지 전까지 로봇 접촉 금지</li>
+              <li>두 로봇이 10초간 공을 추적하지 않으면 심판이 공을 중립점으로 이동. 그래도 추적 안 하면 일단 정지 후 공을 시작점에 돌리고 양 로봇을 센터 서클 바깥에 두고 재시작</li>
+            </ul>
+
+            <h5>⚙️ 변경 사항 (2026년 4월 20일 업데이트)</h5>
+            <div class="rules-warn">
+              로봇을 필드 중앙에 <strong>등을 맞댄 채</strong> 놓고 시작 후 <strong>3초 대기</strong>합니다. 3초 후 필드 가장자리까지 이동, 센서로 흰 또는 검은 라인을 검출한 뒤 공격으로 전환합니다.
+            </div>
+
+            <h5>금지 행위</h5>
+            <ul>
+              <li>날카로운 칼날·망치 등 상대 로봇/필드 손상 장치</li>
+              <li>적외선 LED 조사 등 상대 적외선 센서 방해 장치</li>
+              <li>고체/액체/기체 상태와 무관하게 상대에게 분사하는 장치</li>
+              <li>상대 로봇을 포획하려는 장치</li>
+              <li>점착성 물질을 노출시킨 장치</li>
+            </ul>
+
+            <h5>득점</h5>
+            <p>1골당 1득점. 누적 득점으로 승부 결정. (골 안에는 카펫이 없으므로 공이 필드 카펫에서 떨어지는 시점이 골)</p>
+
+            <h5>필드 상세</h5>
+            <p>20mm 두께 MDF(중밀도 섬유판) 또는 비자성 소재로 제작. 카펫 500×500mm(스미노에 PX-3020) 6장 사용. 센터 서클·시작점·중립점은 검은 유성매직으로 표시.</p>
+          </div>
+        </details>
+
+        <!-- 10. MiddleBot Challenge -->
+        <details class="reveal">
+          <summary>
+            <div class="rules-num">10</div>
+            <div class="rules-title">
+              <strong>MiddleBot Challenge · 미들봇 챌린지</strong>
+              <span class="rules-en">Remote-Controlled Block Collection (2025 Edition)</span>
+            </div>
+          </summary>
+          <div class="rules-body">
+            <h5>참가 자격</h5>
+            <div class="rules-divisions">
+              <span class="rules-tag">중등 MS</span>
+              <span class="rules-tag">고등 HS</span>
+            </div>
+            <p>팀 인원: 2~4명</p>
+
+            <h5>로봇 사양</h5>
+            <ul>
+              <li><strong>크기</strong>: 길이 60cm × 폭 40cm × 높이 40cm. 출발 후 변형은 크기 제한을 받지 않음</li>
+              <li>경기장에 손상을 줄 수 있는 구조의 로봇은 사용 불가</li>
+              <li>제작 비용 <strong>1,500 USD 이하</strong></li>
+              <li>전원: 반드시 <strong>배터리</strong> 사용. 외부 전원 공급 불가</li>
+              <li>전선을 포함한 모든 부품은 로봇 본체 범위 내에 견고히 고정. 타 로봇과 엉키거나 맞물려 분리가 어려운 상황 방지</li>
+              <li>경기 전 사양 검사 진행. 위반 시 <strong>1분 내 수정</strong> 가능, 시간 내 미수정 시 참가 자격 상실</li>
+              <li><strong>팀 색상 식별물(빨강/파랑)</strong>: 각 팀은 소속 연합대(Alliance) 색상에 맞춰 식별물을 부착. 심판이 쉽게 구분할 수 있는 위치에 <strong>최소 15cm × 15cm</strong> 크기로 부착</li>
+              <li>경기 진행에 영향을 주는 구조는 심판이 직접 인정·수정 요구. 수정 시간 5분</li>
+            </ul>
+
+            <h5>경기장 사양</h5>
+            <ul>
+              <li><strong>크기</strong>: 약 300cm × 200cm × 높이 20cm</li>
+              <li><strong>측면 득점 기둥</strong>: 외경 약 14cm × 14cm × 20cm / 내경 약 10cm × 10cm × 17cm</li>
+              <li><strong>중앙 득점 기둥</strong>: 외경 약 14cm × 14cm × 20cm / 내경 약 10cm × 10cm × 20cm</li>
+              <li><strong>득점 블록</strong>: 빨강 / 파랑 색상 7cm × 7cm × 7cm 큐브</li>
+            </ul>
+
+            <h5>경기 시간</h5>
+            <ul>
+              <li>로봇과 프로그램은 사전 조립 완료 가능</li>
+              <li>1경기당 <strong>1~3분</strong>. 자원이 더 이상 없거나 양 연합대가 조기 종료에 동의 시 즉시 종료</li>
+              <li>경기 일정은 사전 공고. 진행 상황에 따라 단축·연장 가능</li>
+              <li>경기 시작 전 대기 구역 미도착 시 해당 경기 <strong>기권(0점)</strong> 처리</li>
+              <li>로봇 조작자만 로봇·편집 기기(노트북·태블릿 등)를 접촉 가능. 경기 중 비교 구역 외 반출 및 통신 소프트웨어 사용 불가</li>
+              <li>운영 원칙: 조작자가 실행하고, 코치는 과도한 개입 없이 지도, 관전자는 관전 예의를 지킬 것</li>
+            </ul>
+
+            <h5>대회 방식</h5>
+            <ul>
+              <li>연합대(Alliance) 조별 또는 팀 간 대결. 연합대 구성은 대회 측이 무작위 배정 후 공고</li>
+              <li>각 팀의 경기 수는 접수 마감 후 사전 공고</li>
+              <li>각 경기 후 <strong>적분(Tournament Points)</strong>과 <strong>득점(Score)</strong> 2종 기록 부여</li>
+              <li><strong>득점</strong>: 해당 경기에서 소속 연합대가 획득한 점수</li>
+              <li><strong>적분</strong>: 승리 연합대 3점 / 무승부 2점 / 패배 연합대 1점</li>
+              <li>최종 승부는 전 경기 적분 합계로 결정</li>
+            </ul>
+
+            <h5>동점 시 우선순위</h5>
+            <table>
+              <thead><tr><th>순위</th><th>판단 기준</th><th>승부</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>총 적분</td><td>높은 쪽 승</td></tr>
+                <tr><td>2</td><td>총 득점</td><td>높은 쪽 승</td></tr>
+                <tr><td>3</td><td>단경기 최고 득점</td><td>높은 쪽 승</td></tr>
+                <tr><td>4</td><td>로봇 중량</td><td>가벼운 쪽 승</td></tr>
+              </tbody>
+            </table>
+            <p>※ 경기 중 심판단이 최고 결정권을 가지며, 경기 영상 시청 후에도 판결은 변경되지 않습니다.</p>
+
+            <h5>경기 규칙</h5>
+            <ul>
+              <li>연합대 또는 팀 간 대결. 연합대 방식이면 <strong>A·B 연합대 각각 2개 팀 무작위 구성</strong>, 원격조종 방식으로 진행</li>
+              <li><strong>빨강·파랑 베이스 구역</strong>이 출발 위치. 출발 시 차체의 어느 한 접지점이 베이스 색상 블록에 닿아 있어야 함. 로봇 위에 미리 블록을 보유 불가</li>
+              <li>원격조종으로 자기 팀 색상 블록을 잡아 득점 구역에 배치(구역 밖 돌출 금지). <strong>1개 블록당 10점</strong></li>
+              <li><strong>배가(倍加) 버튼</strong>: 득점 구역의 배가 버튼을 눌러 LED 띠 색을 자기 팀 색으로 설정 시, 해당 구역의 같은 색 블록 득점이 <strong>2배 가산</strong></li>
+              <li><strong>중앙 특수 득점 구역</strong>: 중앙에는 위로 블록을 쌓을 수 있으며 (최대 4개), 경기 종료 시 가장 위 블록의 색상 팀이 그 구역 <strong>전체 블록 개수 × 2배</strong> 점수 획득</li>
+              <li><strong>블록 장외 이동</strong>: 득점 블록이 경기장 밖으로 나가면 이동한 쪽 반칙, 블록당 <strong>40점 감점</strong> (누적)</li>
+            </ul>
+
+            <h5>수리 / 정비</h5>
+            <ul>
+              <li>로봇 수리 필요 시 베이스 구역까지 자력 복귀 후 차체 접지점이 베이스 색상 블록에 닿으면 선수가 직접 반출 가능. 자력 복귀 불가 시 심판 도움 요청</li>
+              <li>수리 중에는 기존 구조 수리·조정만 허용. 추가 부품 부착 불가 (위반 시 원상복구 후 재경기)</li>
+              <li>수리 완료 후 베이스 구역에 다시 배치하고 출발. 차체 접지점이 베이스 블록과 접촉해야 함</li>
+              <li>수리 시 로봇 위 블록은 임의 위치로 경기장에 무작위 재배치</li>
+            </ul>
+
+            <h5>경기 종료 시</h5>
+            <ul>
+              <li>로봇이 자기 베이스 구역(접지점)에 복귀해 있으면 <strong>로봇당 추가 20점</strong> 보너스</li>
+              <li>심판이 접촉 허용을 선언하기 전 임의 이동 시: 베이스 안에 있던 로봇이 이동으로 벗어나면 보너스 취소 / 베이스 밖에 있던 로봇이 이동으로 들어가도 보너스 미지급</li>
+              <li>경기 중 로봇이 행위 능력을 상실하고 5초 내 정상 동작 회복 못 하면 심판이 장외 이동, 경기 속행</li>
+            </ul>
+
+            <h5>반칙 행위 (각 항목 누적)</h5>
+            <ul>
+              <li>외부에서 베이스 구역에 배치 후 출발 전 규정 미준수</li>
+              <li>고의로 상대 베이스 왕복을 방해 (심판 인정)</li>
+              <li>로봇이 능동적으로 상대 로봇과 충돌하거나 방해 시도 (심판 인정)</li>
+              <li><strong>고의 충돌·밀치기</strong>: 정지한 상대 로봇을 강제로 이동시키거나, 자기 전진 동작으로 상대를 강제로 후퇴시키는 행위</li>
+              <li>경기 도구·시설을 임의로 파손 (심판 인정)</li>
+              <li><strong>악성 충돌</strong>: 40cm 이상 거리에서 가속 후 그대로 충돌, 또는 20cm 내에서 전후 진동으로 <strong>3회 이상</strong> 부딪힘</li>
+              <li>경기 개시 후 종료 전, 비교 구역 내에서 선수가 경기 중인 로봇에 접촉 (심판 허용 시 제외)</li>
+              <li>수리 시 정비 구역으로 원격 이동 후 반출하지 않고 정비 구역에서 직접 수리</li>
+              <li>경기 종료 후 심판의 회수 허가 전 임의 이동</li>
+            </ul>
+
+            <h5>점수 요약</h5>
+            <table>
+              <thead><tr><th>유형</th><th>설명</th><th>점수</th></tr></thead>
+              <tbody>
+                <tr><td>득점 블록</td><td>주변 득점 구역의 블록</td><td>10점</td></tr>
+                <tr><td>배가 버튼</td><td>LED 띠와 같은 색 블록</td><td>해당 색 블록 점수 × 2</td></tr>
+                <tr><td>중앙 특수 구역</td><td>최대 4개, 최상단 색이 점령자</td><td>그 구역 전체 블록 수 × 2</td></tr>
+                <tr><td>경기 종료 보너스</td><td>로봇이 베이스에 접지</td><td>로봇당 20점</td></tr>
+                <tr><td>기술 반칙</td><td>경기 규칙 위반</td><td>반칙 측 연합대 −10점 (누적)</td></tr>
+                <tr><td>반칙</td><td>자원(블록) 장외 이동</td><td>반칙 측 연합대 −40점 (누적)</td></tr>
+              </tbody>
+            </table>
+
+            <h5>시상</h5>
+            <ul>
+              <li><strong>중등부 / 고등부</strong> 각각: 상위 3팀 + 우수상 다수, 금메달(상위 50%) / 은메달(상위 70%) / 동메달(완주)</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- 11. SoccerBot Radio-controlled -->
+        <details class="reveal">
+          <summary>
+            <div class="rules-num">11</div>
+            <div class="rules-title">
+              <strong>SoccerBot Radio-controlled · 사커봇 원격조종</strong>
+              <span class="rules-en">Radio-Controlled SoccerBot Challenge</span>
+            </div>
+          </summary>
+          <div class="rules-body">
+            <h5>경기 목적</h5>
+            <p>"축구"를 목표로 <strong>2대의 원격조종(Radio-controlled) 로봇</strong>을 설계·제작·프로그래밍합니다.</p>
+
+            <h5>부문 / 중량 구분</h5>
+            <div class="rules-divisions">
+              <span class="rules-tag">초등 ES</span>
+              <span class="rules-tag">중등 MS</span>
+              <span class="rules-tag">고등 HS</span>
+            </div>
+            <table>
+              <thead><tr><th>중량 구분</th><th>대상 부문</th></tr></thead>
+              <tbody>
+                <tr><td>800g</td><td>ES / MS / HS</td></tr>
+                <tr><td>※</td><td>이벤트 디렉터 재량으로 추가 가능</td></tr>
+              </tbody>
+            </table>
+            <p>※ 등록이 5팀 미만인 부문은 통합 가능</p>
+
+            <h5>로봇 요구사항</h5>
+            <p>플랫폼 자유. <strong>2대 1조</strong>의 원격조종 로봇을 사용하며 비용은 <strong>500 USD 이하</strong>. 접수 시 사양 검사 진행.</p>
+            <ul>
+              <li><strong>최대 크기</strong>: 15cm × 15cm × 15cm. <strong>허용 오차 없음</strong></li>
+              <li>크기·중량 제한은 <strong>대회 전 기간</strong>에 걸쳐 엄격 적용</li>
+              <li>상대 로봇과 접촉할 가능성이 있는 부품은 쉽게 파손되지 않을 만큼 견고할 것</li>
+              <li><strong>금지 메커니즘</strong>: 슈팅(shooting), 잡기(grabbing), 킥(kicking), 클램핑(clamping), 점착성 소재, 솔레노이드, 공을 밀거나 잡는 모든 시스템 금지. 단, <strong>경기 시작 후</strong> 부품을 전개하는 것은 허용</li>
+              <li>전원: <strong>배터리</strong> 사용. 외부 케이블 전원 공급 불가</li>
+              <li><strong>공 포함 한계</strong>: 로봇 하나당 공 부피의 <strong>최대 30%</strong>만 감쌀 수 있음. 나머지 <strong>70%는 외부에 노출</strong>되어야 함
+                <ul>
+                  <li>공: 지름 <strong>35.5mm</strong>, 무게 약 <strong>40g</strong>, 30% 기준 <strong>10.65mm</strong></li>
+                  <li>공정 경기를 위해 정밀 측정·중량 검사 시행. 사양 미준수 로봇은 출전 불가</li>
+                </ul>
+              </li>
+              <li>접착제, 흡착, 점착 장치로 공을 로봇에 부착하는 행위 <strong>엄격 금지</strong></li>
+              <li>로봇에는 <strong>팀명과 번호</strong>를 명확히 표시. 팀 간 로봇 공유 불가</li>
+            </ul>
+
+            <h5>일반 규칙 — 페어 플레이 위반 (상대팀에 1골 부여)</h5>
+            <ul>
+              <li>경기 중단 후 재개까지 <strong>30초 초과</strong></li>
+              <li>대회의 무결성을 훼손하는 발언·행동 → 해당 팀 <strong>실격</strong></li>
+              <li>상대 팀 로봇을 의도적으로 조종 → <strong>실격</strong></li>
+              <li>경기 중이 아닌 팀이나 관중이 의도적 방해 시, 이로부터 이익을 본 팀 <strong>실격</strong></li>
+              <li>인화성 장치 사용 → <strong>실격</strong></li>
+              <li>필드 또는 행사 설비 고의 손상 → <strong>실격</strong></li>
+              <li>심판·상대 팀 모욕 → <strong>실격</strong></li>
+            </ul>
+
+            <h5>대회 방식</h5>
+            <ul>
+              <li>조 편성: <strong>무작위 추첨 또는 알파벳 순</strong> (참가팀 수에 따라 결정)</li>
+              <li>각 조는 <strong>4팀</strong>으로 구성</li>
+              <li><strong>조별 라운드로빈</strong>, 1경기 최대 3분</li>
+              <li>각 조 <strong>상위 2팀</strong>이 토너먼트(단판 토너먼트) 진출</li>
+            </ul>
+
+            <h5>경기 시간</h5>
+            <ul>
+              <li>1경기 최대 <strong>3분</strong>. <strong>전·후반 각 90초</strong>로 진행</li>
+              <li>전반 종료 후 <strong>30초 이내</strong>로 좌우 교체</li>
+              <li><strong>연장·타임아웃·로스타임 없음</strong></li>
+              <li>공이 필드를 벗어나면 시간 정지, 공이 다시 들어오면 시간 재개</li>
+            </ul>
+
+            <h5>승점 배분</h5>
+            <ul>
+              <li>득점 우세 팀 → <strong>3점</strong></li>
+              <li>상대 팀이 파손·배터리 소진으로 경기 속행 불가능 → 비록 상대가 앞서고 있었어도 <strong>3점</strong></li>
+              <li><strong>부전승</strong> (상대 미출전): 승자에게 <strong>3점 + 3골</strong> 부여</li>
+              <li>득점 없는 무승부 또는 동점 무승부 → 양 팀 <strong>1점</strong></li>
+              <li>양 팀 모두 속행 불가능 (경기 진행 중이었던 경우) → <strong>0점</strong></li>
+              <li>패배 팀 → <strong>0점</strong></li>
+              <li>양 팀 모두 미출전 → <strong>0점</strong></li>
+            </ul>
+
+            <h5>동점 처리</h5>
+            <ul>
+              <li><strong>조별 라운드</strong>: 동점 시 <strong>총 득점</strong>이 많은 팀 승. 그래도 동점이면 <strong>코인 토스</strong></li>
+              <li><strong>토너먼트 라운드</strong>: 동점 시 경기 속행하여 <strong>골든 골</strong>로 결정</li>
+            </ul>
+
+            <h5>토너먼트 대진 (8강 기준)</h5>
+            <p>1위 vs 8위, 4위 vs 5위, 3위 vs 6위, 2위 vs 7위 → 준결승(S1~S4) → 결승(F1·F2) → 우승</p>
+
+            <h5>필드 / 트랙</h5>
+            <ul>
+              <li>트랙은 일반적으로 <strong>내구성 종이 / PVC 비닐 백킹 / 3mm Trovicel</strong>에 인쇄 (120cm × 180cm)</li>
+              <li>필드 크기: <strong>1.20m × 1.80m</strong></li>
+              <li>골 크기: <strong>0.50m</strong></li>
+            </ul>
+          </div>
+        </details>
+
       </div>
     </div>
   </section>
