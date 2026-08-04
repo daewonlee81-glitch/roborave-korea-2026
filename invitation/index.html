@@ -237,6 +237,19 @@
           <span class="d">학교 제출용 + 입국 참고용 2매를 함께 발급</span></span></label>
       </div>
 
+      <div class="row">
+        <div class="field">
+          <label>학교·소속 (문서에 인쇄될 이름)</label>
+          <input type="text" id="qSchool" placeholder="예) 서울하늘빛초등학교" autocomplete="off">
+          <div class="hint">공문에 그대로 인쇄됩니다. 정식 명칭으로 적어 주세요.</div>
+        </div>
+        <div class="field">
+          <label>학년 / 반</label>
+          <input type="text" id="qGrade" placeholder="예) 5학년 3반" autocomplete="off">
+          <div class="hint">비워두면 생년월일 기준으로 자동 계산됩니다.</div>
+        </div>
+      </div>
+
       <div id="visaFields" style="display:none;">
         <div class="row">
           <div class="field"><label>여권번호</label>
@@ -356,6 +369,23 @@
   function nights(a,b){var x=parseD(a),y=parseD(b);if(!x||!y)return null;return Math.round((y-x)/86400000);}
   function todayISO(){var t=new Date();
     return t.getFullYear()+"-"+("0"+(t.getMonth()+1)).slice(-2)+"-"+("0"+t.getDate()).slice(-2);}
+  /* 생년월일 → 2026학년도 기준 학년 추정 */
+  function autoGrade(birth){
+    var d=parseD(birth); if(!d) return "";
+    var y=d.getFullYear(), g=2026-y-6;
+    if(g>=1 && g<=6) return "초등학교 "+g+"학년";
+    if(g>=7 && g<=9) return "중학교 "+(g-6)+"학년";
+    if(g>=10 && g<=12) return "고등학교 "+(g-9)+"학년";
+    return "";
+  }
+  /* 한글 학교명이면 "○○초등학교장 귀하", 아니면 "학교장 귀하" */
+  function recipientOf(school){
+    if(school && /[가-힣]/.test(school)){
+      var t=school.replace(/\s+$/,"");
+      return /(학교|학원|기관|센터|아카데미)$/.test(t) ? t+"장 귀하" : t+" 귀하";
+    }
+    return "학교장 귀하";
+  }
   function josa(w,a,b){if(!w)return b;var c=w.charCodeAt(w.length-1);
     if(c<0xAC00||c>0xD7A3)return b;return ((c-0xAC00)%28)?a:b;}
 
@@ -448,7 +478,7 @@
     return '<div class="page"><div class="page-inner">'+docHead(no,issued)+
       '<div class="doc-title"><h2>참가 확인 및 출석인정 협조 요청서</h2>'+
       '<div class="sub">Letter of Invitation &amp; Request for Excused Absence</div><div class="rule"></div></div>'+
-      '<div class="addr"><b>수신 :</b> '+esc(p.school?p.school+"장 귀하":"학교장 귀하")+'<br>'+
+      '<div class="addr"><b>수신 :</b> '+esc(recipientOf(p.school))+'<br>'+
       '<b>제목 :</b> RoboRAVE 세계대회 2026(일본 오사카) 참가에 따른 출석인정결석 처리 협조 요청</div>'+
       '<div class="body-txt">'+
       '<p>1. 귀 교(기관)의 무궁한 발전을 기원합니다.</p>'+
@@ -540,6 +570,10 @@
       catch(e){ showErr("정보를 확인할 수 없습니다. 잠시 후 다시 시도해 주세요."); return; }
 
       /* 참가자가 직접 입력한 항목 반영 */
+      var sc=$("qSchool").value.trim();
+      if(sc) p.school=sc;
+      var gr=$("qGrade").value.trim();
+      p.grade = gr || p.grade || autoGrade(p.birth);
       var m=currentMode();
       if(m!=="school"){
         p.passport=$("qPassport").value.trim()||p.passport||"";
