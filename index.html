@@ -254,7 +254,7 @@
     padding: 6px 14px; border-radius: 999px;
     background: #fff; border: 1px solid var(--line);
     color: var(--ink-soft); font-size: 13px; font-weight: 500;
-    margin-bottom: 24px;
+    margin-bottom: 14px;
     box-shadow: var(--shadow-sm);
   }
   .eyebrow .dot {
@@ -283,6 +283,28 @@
     max-width: 680px; margin: 0 0 36px;
   }
   .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* Hero 공지 배지 — 2027 공동 개최 */
+  .hero-notice {
+    display: flex; width: fit-content; max-width: 100%;
+    align-items: center; gap: 10px; flex-wrap: wrap;
+    padding: 8px 18px 8px 8px; border-radius: 999px;
+    background: linear-gradient(115deg, #0a0a0a 0%, #1b1b1b 58%, #3a0d15 100%);
+    color: #fff; text-decoration: none;
+    font-size: 14px; font-weight: 600; line-height: 1.4;
+    margin: 0 0 22px; box-shadow: var(--shadow-md);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .hero-notice:hover { transform: translateY(-2px); box-shadow: var(--shadow-red); }
+  .hero-notice .hn-tag {
+    background: var(--brand); color: #fff; border-radius: 999px;
+    padding: 5px 12px; font-size: 12px; font-weight: 800; letter-spacing: .02em;
+    white-space: nowrap;
+  }
+  .hero-notice .hn-text { color: rgba(255,255,255,.86); }
+  .hero-notice .hn-text strong { color: #fff; font-weight: 800; }
+  .hero-notice .hn-x { color: #ff8fa1; font-weight: 800; margin: 0 3px; }
+  .hero-notice svg { opacity: .85; vertical-align: -2px; margin-left: 6px; }
 
   /* Stats */
   .stats {
@@ -845,8 +867,13 @@
     /* Hero */
     .hero { padding: 48px 0 48px; }
     .hero .eyebrow {
-      padding: 5px 11px; font-size: 11px; margin-bottom: 18px;
+      padding: 5px 11px; font-size: 11px; margin-bottom: 12px;
     }
+    .hero-notice {
+      align-items: flex-start; gap: 8px;
+      padding: 8px 14px 8px 8px; font-size: 12.5px; margin-bottom: 18px;
+    }
+    .hero-notice .hn-tag { padding: 4px 9px; font-size: 11px; }
     .hero h1 { font-size: 38px; line-height: 1.08; margin-bottom: 14px; }
     .hero p.lead { font-size: 15px; margin-bottom: 28px; }
     .hero .cta { gap: 10px; }
@@ -1104,6 +1131,14 @@
   <section class="hero">
     <div class="container">
       <span class="eyebrow"><span class="dot"></span> International Robotics Competition · Korea</span>
+
+      <a class="hero-notice" href="https://worldrobotleague.net/" target="_blank" rel="noopener">
+        <span class="hn-tag">2027 공동 개최</span>
+        <span class="hn-text">
+          <strong>RoboRAVE Korea Open 2027</strong><span class="hn-x">×</span><strong>World Robot League 2027</strong>
+          &nbsp;·&nbsp; 2027년 2월 · 대한민국<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
       <h1>
         경쟁을 넘어,<br>
         <span class="grad">Beyond Competition.</span>
@@ -1111,7 +1146,9 @@
       <p class="lead">
         전 세계 <strong>60개국 6,000여 팀</strong>이 참가하는 국제 로봇경진대회 RoboRAVE.
         한국에서는 <strong>2026년부터 공식 출범</strong>하여 국내 대회 운영과
-        국가대표 선발을 시작합니다. 도전과 협력, 배움의 즐거움을 나누는 무대를 만듭니다.
+        국가대표 선발을 시작합니다. 특히 <strong>2027년 RoboRAVE Korea Open</strong>은
+        <strong>World Robot League 2027</strong>과 함께 개최되어, 더 큰 국제 무대에서
+        도전과 협력, 배움의 즐거움을 나눕니다.
       </p>
       <div class="cta">
         <a href="#programs" class="btn btn-primary">프로그램 보기</a>
