@@ -185,10 +185,15 @@
   }
 
   nav ul {
-    display: flex; gap: 32px; list-style: none; margin: 0; padding: 0;
+    display: flex; flex-wrap: nowrap; align-items: center;
+    gap: clamp(13px, 1.7vw, 32px);
+    list-style: none; margin: 0; padding: 0;
   }
+  nav li { flex: 0 0 auto; }
   nav a {
-    color: var(--ink-soft); font-weight: 500; font-size: 15px;
+    color: var(--ink-soft); font-weight: 500;
+    font-size: clamp(13px, 1.12vw, 15px);
+    white-space: nowrap; word-break: keep-all;
     transition: color .2s ease;
     position: relative;
   }
@@ -338,9 +343,11 @@
   .section-head h2 {
     font-size: clamp(30px, 3.6vw, 44px);
     letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 16px; font-weight: 800;
+    word-break: keep-all; overflow-wrap: break-word; text-wrap: balance;
   }
   .section-head p {
     color: var(--ink-soft); font-size: 17px; margin: 0;
+    word-break: keep-all; overflow-wrap: break-word;
   }
 
   /* About */
@@ -569,6 +576,35 @@
   }
   .winner-card .player {
     font-size: 12.5px; color: var(--ink-soft); line-height: 1.3;
+  }
+
+  .osaka { background: linear-gradient(180deg, #fafafa 0%, #f2f2f2 100%); border-top: 1px solid var(--line); }
+  .osaka .winner-card { background: #fff; }
+  .winner-card .worg {
+    display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 999px;
+    background: var(--bg-soft); border: 1px solid var(--line);
+    font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 0.01em;
+    vertical-align: middle;
+  }
+
+  .osaka-gallery {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 16px; margin-bottom: 36px;
+  }
+  .osaka-gallery .results-photo {
+    aspect-ratio: auto; margin: 0;
+    display: flex; flex-direction: column;
+    background: #fff;
+  }
+  .osaka-gallery .results-photo img {
+    width: 100%; aspect-ratio: 3 / 2; object-fit: cover; object-position: center 42%;
+  }
+  .osaka-gallery figcaption {
+    padding: 12px 16px; font-size: 13px; color: var(--ink-soft);
+    line-height: 1.5; word-break: keep-all; border-top: 1px solid var(--line);
+  }
+  @media (max-width: 760px) {
+    .osaka-gallery { grid-template-columns: 1fr; gap: 12px; }
   }
 
   /* Rules / 대회 규정 */
@@ -828,6 +864,11 @@
   /* ===== Responsive ===== */
 
   /* Tablet & below (≤ 900px) */
+  @media (max-width: 1080px) {
+    .nav .btn-primary { display: none !important; }
+    nav ul { gap: 15px; }
+  }
+
   @media (max-width: 900px) {
     .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     .cards { grid-template-columns: 1fr; }
@@ -1113,8 +1154,8 @@
         <li><a href="#partners">협력 기관</a></li>
         <li><a href="#programs">프로그램</a></li>
         <li><a href="#results">2026 결과</a></li>
+        <li><a href="#osaka">오사카 2026</a></li>
         <li><a href="#rules">규정</a></li>
-        <li><a href="/invitation/">초대장 발급</a></li>
         <li><a href="https://worldrobotleague.net/" target="_blank" rel="noopener">World Robot League</a></li>
         <li><a href="#contact">문의</a></li>
       </ul>
@@ -1543,6 +1584,112 @@
 
       <div style="margin-top: 28px; padding: 18px 22px; background: var(--bg-soft); border-radius: 12px; border-left: 4px solid var(--brand); font-size: 14px; color: var(--ink-soft); line-height: 1.7;">
         <strong style="color: var(--ink);">시상 안내</strong> · 각 종목 1위 <strong>한국로봇AI산업협회장상</strong>, 2위 <strong>국제청소년로봇연맹총재상</strong>, 3·4위 <strong>국제로봇교육협의회상</strong>이 수여됩니다.
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== OSAKA 2026 WORLD CHAMPIONSHIP RESULTS ===== -->
+  <section id="osaka" class="results osaka">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="kicker">World Championship</div>
+        <h2>RoboRAVE OSAKA 2026 — 한국 대표팀 수상 결과</h2>
+        <p>2026년 8월 11–12일 일본 오사카(Grand Cube Osaka)에서 열린 RoboRAVE 세계대회에서 한국 대표팀 26팀이 출전해 8개 팀이 입상했습니다.</p>
+      </div>
+
+      <!-- Stats Banner -->
+      <div class="results-stats reveal">
+        <div class="results-stat">
+          <div class="n">26</div>
+          <div class="l">출전팀 Teams</div>
+        </div>
+        <div class="results-stat">
+          <div class="n">8</div>
+          <div class="l">수상팀 Awards</div>
+        </div>
+        <div class="results-stat">
+          <div class="n">4</div>
+          <div class="l">금메달 Gold</div>
+        </div>
+        <div class="results-stat">
+          <div class="n">4</div>
+          <div class="l">수상 종목 Events</div>
+        </div>
+      </div>
+
+
+      <!-- Photo Gallery -->
+      <div class="osaka-gallery reveal">
+        <figure class="results-photo">
+          <img src="osaka-2026-1.jpg" alt="RoboRAVE OSAKA 2026 시상식 - 태극기를 든 한국 대표팀"
+               loading="lazy" decoding="async"
+               onerror="this.closest('figure').style.display='none';" />
+          <figcaption>시상식 무대에 선 한국 대표팀 · Osaka International Convention Center</figcaption>
+        </figure>
+        <figure class="results-photo">
+          <img src="osaka-2026-2.jpg" alt="RoboRAVE OSAKA 2026 메달 수여식 - 한국 대표팀 선수들"
+               loading="lazy" decoding="async"
+               onerror="this.closest('figure').style.display='none';" />
+          <figcaption>메달 수여식 · RoboRAVE World Championship 2026</figcaption>
+        </figure>
+      </div>
+
+      <h3 style="font-size:22px; font-weight:800; letter-spacing:-0.01em; margin:24px 0 18px; color:var(--ink);">종목별 수상팀</h3>
+
+      <div class="winners-grid">
+
+        <!-- SumoBot LEGO & VEX IQ - Elementary -->
+        <div class="winner-card reveal">
+          <div class="wevent">SumoBot (LEGO &amp; VEX IQ / ≤1kg)</div>
+          <div class="wsub">초등부 Elementary</div>
+          <ol>
+            <li class="gold"><div class="rank">1st</div><div><div class="team">Hard Mode <span class="worg">Brick &amp; Mensa Gifted Academy</span></div><div class="player">주호겸 (서울구룡초), 이산 (경복초), 구채우 (서울인헌초), 구채완 (서울인헌초)</div></div></li>
+          </ol>
+        </div>
+
+        <!-- SumoBot OPEN 1kg - Middle School -->
+        <div class="winner-card reveal">
+          <div class="wevent">SumoBot (OPEN / ≤1kg)</div>
+          <div class="wsub">중등부 Middle School</div>
+          <ol>
+            <li class="silver"><div class="rank">2nd</div><div><div class="team">No name <span class="worg">Brick &amp; Mensa Gifted Academy</span></div><div class="player">류온세 (성재중), 전경훈 (방배중), 배병준 (서운중), 박주원 (동작중)</div></div></li>
+          </ol>
+        </div>
+
+        <!-- SoccerBot Remote - Elementary -->
+        <div class="winner-card reveal">
+          <div class="wevent">SoccerBot (Remote) · 사커봇 원격조종</div>
+          <div class="wsub">초등부 Elementary</div>
+          <ol>
+            <li class="gold"><div class="rank">1st</div><div><div class="team">GPFC B <span class="worg">RoboMakers</span></div><div class="player">이승훈 (나비초), 김이안 (풍무초)</div></div></li>
+            <li class="silver"><div class="rank">2nd</div><div><div class="team">GPFC A <span class="worg">RoboMakers</span></div><div class="player">장태양 (하성초), 김예준 (하늘빛초)</div></div></li>
+          </ol>
+        </div>
+
+        <!-- SoccerBot Remote - Middle School -->
+        <div class="winner-card reveal">
+          <div class="wevent">SoccerBot (Remote) · 사커봇 원격조종</div>
+          <div class="wsub">중등부 Middle School</div>
+          <ol>
+            <li class="gold"><div class="rank">1st</div><div><div class="team">GPFC D <span class="worg">RoboMakers</span></div><div class="player">우준혁 (푸른솔중), 이하준 (월곶초)</div></div></li>
+            <li class="silver"><div class="rank">2nd</div><div><div class="team">GPFC C <span class="worg">RoboMakers</span></div><div class="player">김서은 (하늘빛중), 김서준 (하늘빛초)</div></div></li>
+            <li class="bronze"><div class="rank">3rd</div><div><div class="team">GPFC E <span class="worg">RoboMakers</span></div><div class="player">이민우 (하늘빛중), 손민기 (고창초)</div></div></li>
+          </ol>
+        </div>
+
+        <!-- SoccerBot Autonomous -->
+        <div class="winner-card reveal" style="grid-column: 1 / -1;">
+          <div class="wevent">SoccerBot AUTO · 로봇축구 AUTO</div>
+          <ol>
+            <li class="gold"><div class="rank">1st</div><div><div class="team">GPFC AUTO B <span class="worg">RoboMakers</span></div><div class="player">이민우 (하늘빛중), 손민기 (고창초)</div></div></li>
+          </ol>
+        </div>
+
+      </div>
+
+      <div style="margin-top: 28px; padding: 18px 22px; background: var(--bg-soft); border-radius: 12px; border-left: 4px solid var(--brand); font-size: 14px; color: var(--ink-soft); line-height: 1.7;">
+        <strong style="color: var(--ink);">대회 안내</strong> · RoboRAVE International World Championship 2026 · 2026년 8월 11–12일 · Grand Cube Osaka, Japan · 한국 대표팀 26팀 62명 출전.
       </div>
     </div>
   </section>
