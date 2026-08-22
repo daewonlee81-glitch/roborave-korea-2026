@@ -607,6 +607,16 @@
     .osaka-gallery { grid-template-columns: 1fr; gap: 12px; }
   }
 
+  .o27-grid .winner-card { display: flex; flex-direction: column; }
+  .o27-desc {
+    margin: 10px 0 12px; font-size: 14px; color: var(--ink-soft);
+    line-height: 1.65; word-break: keep-all;
+  }
+  .o27-spec {
+    margin-top: auto; padding-top: 10px; border-top: 1px dashed var(--line);
+    font-size: 12.5px; color: var(--muted); font-weight: 600; letter-spacing: 0.01em;
+  }
+
   /* Rules / 대회 규정 */
   .rules { background: var(--bg-soft); }
   .rules-notice {
@@ -1153,7 +1163,7 @@
         <li><a href="#about">소개</a></li>
         <li><a href="#partners">협력 기관</a></li>
         <li><a href="#programs">프로그램</a></li>
-        <li><a href="#results">2026 결과</a></li>
+        <li><a href="#open2027">2027 대회</a></li>
         <li><a href="#osaka">오사카 2026</a></li>
         <li><a href="#rules">규정</a></li>
         <li><a href="https://worldrobotleague.net/" target="_blank" rel="noopener">World Robot League</a></li>
@@ -1427,163 +1437,91 @@
     </div>
   </section>
 
-  <section id="results" class="results">
+  <!-- ===== ROBORAVE KOREA OPEN 2027 ===== -->
+  <section id="open2027" class="results">
     <div class="container">
       <div class="section-head reveal">
-        <div class="kicker">Results</div>
-        <h2>RoboRave Korea Open 2026 — 종합 결과</h2>
-        <p>전국 96팀 128명이 7개 종목에서 경합한 첫 공식 대회의 모든 결과를 한곳에 정리했습니다.</p>
+        <div class="kicker">Upcoming Competition</div>
+        <h2>RoboRAVE Korea Open 2027 대회 안내</h2>
+        <p>World Robot League 2027과 함께 2027년 2월 대한민국에서 열립니다. 5개 종목 14개 부문에서 국내외 팀이 경합하며, 해외 참가팀을 포함해 200~300명 규모로 진행됩니다. 우수한 성적을 거둔 팀에게는 2027년 미국 휴스턴에서 열리는 RoboRAVE 월드챔피언십 참가 자격이 주어지며, 3월 말 그리스에서 진행되는 유러피안 오픈에도 참가할 수 있습니다.</p>
       </div>
 
       <!-- Stats Banner -->
       <div class="results-stats reveal">
         <div class="results-stat">
-          <div class="n">7</div>
+          <div class="n">5</div>
           <div class="l">종목 Events</div>
         </div>
         <div class="results-stat">
-          <div class="n">96</div>
-          <div class="l">참가팀 Teams</div>
-        </div>
-        <div class="results-stat">
-          <div class="n">128</div>
-          <div class="l">선수 Players</div>
-        </div>
-        <div class="results-stat">
-          <div class="n">3</div>
+          <div class="n">14</div>
           <div class="l">부문 Divisions</div>
+        </div>
+        <div class="results-stat">
+          <div class="n">2027</div>
+          <div class="l">2월 February</div>
+        </div>
+        <div class="results-stat">
+          <div class="n">300</div>
+          <div class="l">참가 규모 Players</div>
         </div>
       </div>
 
       <!-- CTA Buttons -->
       <div class="results-cta reveal">
-        <a href="https://daewonlee81-glitch.github.io/roborave-korea-dashboard/" target="_blank" rel="noopener" class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
-          라이브 경기 결과 대시보드
+        <a href="https://worldrobotleague.net/" target="_blank" rel="noopener" class="btn btn-primary">
+          World Robot League 2027 공식 사이트
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
         </a>
-        <a href="results-2026.pdf" target="_blank" rel="noopener" class="btn btn-dark">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/><line x1="12" y1="12" x2="12" y2="18"/></svg>
-          종합 결과 보고서 (PDF)
+        <a href="https://worldrobotleague.net/rules/" target="_blank" rel="noopener" class="btn btn-dark">
+          종목별 공식 규정 보기
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
         </a>
       </div>
 
-      <!-- Photo Gallery -->
-      <div class="results-gallery reveal">
-        <div class="results-photo">
-          <img src="results-2026-1.jpg.jpeg" alt="대회 사진 1"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />
-          <div class="placeholder-text" style="display:none;"></div>
-        </div>
-        <div class="results-photo">
-          <img src="results-2026-2.jpg.jpeg" alt="대회 사진 2"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />
-          <div class="placeholder-text" style="display:none;"></div>
-        </div>
-        <div class="results-photo">
-          <img src="results-2026-3.jpg.jpeg" alt="대회 사진 3"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />
-          <div class="placeholder-text" style="display:none;"></div>
-        </div>
-        <div class="results-photo">
-          <img src="results-2026-4.jpg.jpeg" alt="대회 사진 4"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />
-          <div class="placeholder-text" style="display:none;"></div>
-        </div>
-      </div>
+      <h3 style="font-size:22px; font-weight:800; letter-spacing:-0.01em; margin:24px 0 18px; color:var(--ink);">경기 종목</h3>
 
-      <h3 style="font-size:22px; font-weight:800; letter-spacing:-0.01em; margin:24px 0 18px; color:var(--ink);">종목별 우승팀</h3>
+      <div class="winners-grid o27-grid">
 
-      <div class="winners-grid">
-
-        <!-- SUMO Spike Junior -->
         <div class="winner-card reveal">
-          <div class="wevent">SUMO Spike Junior</div>
-          <div class="wsub">초등부 · 16강 → 결승</div>
-          <ol>
-            <li class="gold"><div class="rank">1st</div><div><div class="team">날쏀돌이</div><div class="player">김민호 (서울서일초 3), 김동윤 (잠원초 3)</div></div></li>
-            <li class="silver"><div class="rank">2nd</div><div><div class="team">임주원</div><div class="player">임주원 (산성초 6)</div></div></li>
-            <li class="bronze"><div class="rank">3rd</div><div><div class="team">정찬희</div><div class="player">정찬희 (산성초 4)</div></div></li>
-            <li><div class="rank">4th</div><div><div class="team">대회어렵당</div><div class="player">주호겸 (구룡초 6)</div></div></li>
-          </ol>
+          <div class="wevent">01 · a-MAZE-ing · 미로 탈출</div>
+          <div class="wsub">초등부 ES · 중등부 MS</div>
+          <p class="o27-desc">자율주행 로봇이 바닥에서 올라온 목재 미로를 떨어지지 않고 통과합니다. 직선 구간 50점, 코너 100점이며 제한시간 2분 안에 완주하면 남은 시간만큼 보너스가 추가됩니다.</p>
+          <div class="o27-spec">자율주행 · 플랫폼 자유 · 미로 폭 24cm</div>
         </div>
 
-        <!-- SUMO Open Junior -->
         <div class="winner-card reveal">
-          <div class="wevent">SUMO Open Junior</div>
-          <div class="wsub">초등부 · 4강 → 결승</div>
-          <ol>
-            <li class="gold"><div class="rank">1st</div><div><div class="team">커비</div><div class="player">조연우 (성남정자초 4)</div></div></li>
-            <li class="silver"><div class="rank">2nd</div><div><div class="team">크레스티드개코</div><div class="player">임지후 (내정초 6)</div></div></li>
-            <li class="bronze"><div class="rank">3rd</div><div><div class="team">마법사탕지팡이</div><div class="player">송은호 (대장초 4)</div></div></li>
-            <li><div class="rank">4th</div><div><div class="team">메타나이트</div><div class="player">이유준 (초림초 4)</div></div></li>
-          </ol>
+          <div class="wevent">02 · Line Following · 라인트레이싱</div>
+          <div class="wsub">초등부 ES · 중등부 MS · 고등부 HS · 대학/일반 UP</div>
+          <p class="o27-desc">검은 라인을 따라 타워까지 이동해 볼을 배달하고 귀환하는 경기입니다. 부문별로 요구되는 볼 개수가 다르며, 경기시간 3분 동안 반복 배달로 점수를 쌓습니다.</p>
+          <div class="o27-spec">자율주행 · LEGO/VEX IQ 및 오픈 플랫폼 · 경기 3분</div>
         </div>
 
-        <!-- SUMO Spike Senior -->
         <div class="winner-card reveal">
-          <div class="wevent">SUMO Spike Senior</div>
-          <div class="wsub">중·고등부 · 4강 → 결승</div>
-          <ol>
-            <li class="gold"><div class="rank">1st</div><div><div class="team">아이콘 김도율</div><div class="player">김도율 (청라달튼외국인학교 8)</div></div></li>
-            <li class="silver"><div class="rank">2nd</div><div><div class="team">임지수</div><div class="player">임지수 (솔밭중 2)</div></div></li>
-            <li class="bronze"><div class="rank">3rd</div><div><div class="team">Noname</div><div class="player">전경훈 (방배중 1), 류온세 (홈스쿨)</div></div></li>
-            <li><div class="rank">4th</div><div><div class="team">박송주</div><div class="player">박송주 (금천중 2)</div></div></li>
-          </ol>
+          <div class="wevent">03 · SumoBot · 스모봇</div>
+          <div class="wsub">LEGO/VEX IQ 1kg (초등) · 오픈 1kg (초·중·고·일반) · 오픈 3kg (중·고·일반)</div>
+          <p class="o27-desc">자율주행 로봇이 지름 800mm 링 위에서 상대를 찾아 밀어냅니다. 리그전으로 진행되며 2선승 시 경기가 종료되고, 승 3점·무 1점·패 0점으로 순위를 가립니다.</p>
+          <div class="o27-spec">자율주행 · 최대 25×18cm · 높이 제한 없음</div>
         </div>
 
-        <!-- SUMO Open Senior -->
         <div class="winner-card reveal">
-          <div class="wevent">SUMO Open Senior</div>
-          <div class="wsub">중·고등부 · 4강 → 결승</div>
-          <ol>
-            <li class="gold"><div class="rank">1st</div><div><div class="team">시우</div><div class="player">박시우 (페이스튼)</div></div></li>
-            <li class="silver"><div class="rank">2nd</div><div><div class="team">Gen.G</div><div class="player">강현우 (광교중 2)</div></div></li>
-            <li class="bronze"><div class="rank">3rd</div><div><div class="team">F1</div><div class="player">이하진 (신백현중 1)</div></div></li>
-            <li><div class="rank">4th</div><div><div class="team">hammers</div><div class="player">정하람·하다빈·김태경 (마이폴학교)</div></div></li>
-          </ol>
+          <div class="wevent">04 · MiddleBot · 미들봇</div>
+          <div class="wsub">중등부 MS · 고등부 HS</div>
+          <p class="o27-desc">240×180cm 경기장에서 신호등 색상에 맞춰 빨강·파랑·초록 블록을 분류하는 재활용 미션 경기입니다. 블록을 쌓을수록 점수 배율이 올라가며 팀당 최대 5회 도전 중 상위 3개 기록을 합산합니다.</p>
+          <div class="o27-spec">경기 2–5분 · 신호등 조작 후 분류 · 스태킹 배율 점수</div>
         </div>
 
-        <!-- Line Follow Junior -->
-        <div class="winner-card reveal">
-          <div class="wevent">Line Follow Junior</div>
-          <div class="wsub">초등부 · 최고 기록 기준</div>
-          <ol>
-            <li class="gold"><div class="rank">1st</div><div><div class="team">김태민 · 541점 (400+141)</div><div class="player">언북초 5</div></div></li>
-            <li class="silver"><div class="rank">2nd</div><div><div class="team">주도윤 · 539점 (400+139)</div><div class="player">동광초 6 · 139초</div></div></li>
-            <li class="bronze"><div class="rank">3rd</div><div><div class="team">J.J · 400점</div><div class="player">이주안 (정자초 5), 한재희 (MCA 4)</div></div></li>
-            <li><div class="rank">4th</div><div><div class="team">차윤찬 · 400점</div><div class="player">목운초 6</div></div></li>
-          </ol>
-        </div>
-
-        <!-- Line Follow Senior -->
-        <div class="winner-card reveal">
-          <div class="wevent">Line Follow Senior</div>
-          <div class="wsub">중·고등부 · 최고 기록 기준</div>
-          <ol>
-            <li class="gold"><div class="rank">1st</div><div><div class="team">천연제 · 543점 (400+143)</div><div class="player">염창중 2 · 143초</div></div></li>
-            <li class="silver"><div class="rank">2nd</div><div><div class="team">한준우 · 534점 (400+134)</div><div class="player">성남중 2 · 134초</div></div></li>
-            <li class="bronze"><div class="rank">3rd</div><div><div class="team">김은채 · 477점 (400+77)</div><div class="player">언주중 1 · 77초</div></div></li>
-            <li><div class="rank">4th</div><div><div class="team">와규 · 455점 (400+55)</div><div class="player">최재경 (죽전중 2), 안지호 (탄천초 6)</div></div></li>
-          </ol>
-        </div>
-
-        <!-- Othello -->
         <div class="winner-card reveal" style="grid-column: 1 / -1;">
-          <div class="wevent">Othello · 오델로</div>
-          <div class="wsub">전 부문 · 4강 → 결승</div>
-          <ol>
-            <li class="gold"><div class="rank">1st</div><div><div class="team">문지안</div><div class="player">문지안 (은여울초 4)</div></div></li>
-            <li class="silver"><div class="rank">2nd</div><div><div class="team">김서은</div><div class="player">김서은 (하늘빛중 1)</div></div></li>
-            <li class="bronze"><div class="rank">3rd</div><div><div class="team">김우주</div><div class="player">김우주 (SIA 세종국제학교 6)</div></div></li>
-            <li><div class="rank">4th</div><div><div class="team">김서준</div><div class="player">김서준 (하늘빛초 5)</div></div></li>
-          </ol>
+          <div class="wevent">05 · SoccerBot RC · 로봇축구 (원격조종)</div>
+          <div class="wsub">800g 클래스 · 초등부 ES · 중등부 MS · 고등부 HS</div>
+          <p class="o27-desc">팀당 원격조종 로봇 2대가 1.20×1.80m 경기장에서 축구 경기를 펼칩니다. 전·후반 각 90초로 진행되며, 로봇은 공 부피의 30%까지만 감쌀 수 있어 정교한 드리블과 슈팅 전략이 필요합니다.</p>
+          <div class="o27-spec">RC 2대 · 최대 15×15×15cm · 배터리 구동</div>
         </div>
 
       </div>
 
-      <div style="margin-top: 28px; padding: 18px 22px; background: var(--bg-soft); border-radius: 12px; border-left: 4px solid var(--brand); font-size: 14px; color: var(--ink-soft); line-height: 1.7;">
-        <strong style="color: var(--ink);">시상 안내</strong> · 각 종목 1위 <strong>한국로봇AI산업협회장상</strong>, 2위 <strong>국제청소년로봇연맹총재상</strong>, 3·4위 <strong>국제로봇교육협의회상</strong>이 수여됩니다.
+      <div style="margin-top: 28px; padding: 18px 22px; background: var(--bg-soft); border-radius: 12px; border-left: 4px solid var(--brand); font-size: 14px; color: var(--ink-soft); line-height: 1.7; word-break: keep-all;">
+        <strong style="color: var(--ink);">월드챔피언십 진출</strong> · 우수한 성적을 거둔 팀에게는 <strong>2027년 미국 휴스턴(Houston, USA)에서 열리는 RoboRAVE World Championship</strong> 참가 자격이 주어지며, <strong>3월 말 그리스에서 열리는 RoboRAVE European Open</strong>에도 참가할 수 있습니다.<br/>
+        <strong style="color: var(--ink);">참가 안내</strong> · 세부 일정·장소와 국내외 팀 온라인 접수는 추후 공지됩니다. 참가 문의는 <a href="mailto:robot-league@naver.com" style="color:var(--brand); font-weight:700;">robot-league@naver.com</a> 또는 공식 블로그 <a href="https://blog.naver.com/robot-league" target="_blank" rel="noopener" style="color:var(--brand); font-weight:700;">blog.naver.com/robot-league</a>를 이용해 주세요.
       </div>
     </div>
   </section>
