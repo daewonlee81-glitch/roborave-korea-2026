@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&display=swap">
+<title>초청장 발급 | RoboRAVE Taiwan Open 2026</title>
+<style>
+  :root{
+    --navy:#0a0a0a; --navy-2:#3a3a3a; --accent:#C8102E; --gold:#A00C20;
+    --ink:#0a0a0a; --muted:#8a8a8a; --line:#ececec; --bg:#faf7f7; --panel:#fff;
+    --ok:#1c7a4a; --bad:#C8102E;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Pretendard','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic','Segoe UI',sans-serif;
+    background:var(--bg); color:var(--ink); font-size:15px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--navy-2);}
+  .topbar{
+    background:#fff; border-bottom:1px solid var(--line); padding:14px 26px;
+    display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  }
+  .topbar img.logo{height:34px; width:auto; display:block;}
+  .topbar .divider{width:1px; height:26px; background:var(--line);}
+  .topbar h1{font-size:16px; margin:0; font-weight:800; letter-spacing:-.01em;}
+  .topbar .sub{font-size:12px; color:var(--muted); margin-top:2px;}
+  .topbar .home{
+    margin-left:auto; font-size:13px; font-weight:700; color:var(--brand,#C8102E);
+    text-decoration:none; border:1px solid var(--line); border-radius:8px; padding:8px 14px;
+  }
+  .topbar .home:hover{background:#fdecef; border-color:#f3c9d1;}
+  @media (max-width:560px){ .topbar{padding:12px 16px;} .topbar .home{display:none;} }
+
+  .wrap{max-width:660px; margin:0 auto; padding:26px 18px 60px;}
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:26px; box-shadow:0 1px 3px rgba(22,32,44,.06); margin-bottom:18px;
+  }
+  .card h2{font-size:18px; margin:0 0 6px;}
+  .card .lead{font-size:13.5px; color:var(--muted); margin:0 0 20px; line-height:1.65;}
+
+  label{display:block; font-size:13px; font-weight:600; color:var(--muted); margin-bottom:5px;}
+  input[type=text],input[type=date],select{
+    width:100%; font-family:inherit; font-size:15px; color:var(--ink);
+    border:1px solid var(--line); border-radius:9px; padding:11px 12px; background:#fff;
+  }
+  input:focus,select:focus{outline:2px solid #f3c9d1; border-color:var(--accent);}
+  .field{margin-bottom:15px;}
+  .row{display:grid; gap:12px; grid-template-columns:1fr 1fr;}
+  @media (max-width:560px){ .row{grid-template-columns:1fr;} }
+  .hint{font-size:12px; color:#8a97a6; margin-top:5px; line-height:1.5;}
+
+  .btn{
+    font-family:inherit; font-size:15px; font-weight:700; cursor:pointer;
+    border-radius:9px; padding:13px 18px; border:1px solid transparent; transition:.15s;
+  }
+  .btn-primary{background:var(--accent); color:#fff; width:100%;}
+  .btn-primary:hover{background:#A00C20;}
+  .btn-primary:disabled{background:#c9d1da; cursor:default;}
+  .btn-soft{background:#fff; color:var(--navy); border-color:var(--line); font-size:13.5px; padding:10px 15px;}
+  .btn-soft:hover{background:#f4f7fa;}
+
+  .choice{display:grid; gap:9px; margin-bottom:15px;}
+  .choice label{
+    display:flex; gap:11px; align-items:flex-start; border:1px solid var(--line);
+    border-radius:10px; padding:13px 14px; cursor:pointer; margin:0; font-weight:500;
+    color:var(--ink); background:#fbfcfd; transition:.15s;
+  }
+  .choice label.on{border-color:var(--accent); background:#fdecef; box-shadow:inset 0 0 0 1px var(--accent);}
+  .choice input{margin-top:3px; accent-color:var(--navy);}
+  .choice .t{font-size:14px; font-weight:700; display:block;}
+  .choice .d{font-size:12px; color:var(--muted); margin-top:2px; line-height:1.45;}
+
+  .agree{
+    display:flex; gap:10px; align-items:flex-start; font-size:12.5px; color:#5a5a5a;
+    background:#faf7f7; border:1px solid #ececec; border-radius:9px; padding:12px 13px; margin-bottom:16px;
+  }
+  .agree input{margin-top:3px; accent-color:var(--navy);}
+
+  .msg{border-radius:9px; padding:13px 15px; font-size:13.5px; line-height:1.6; margin-bottom:16px; display:none;}
+  .msg.show{display:block;}
+  .msg.err{background:#fdf1ef; border:1px solid #f0cdc6; color:var(--bad);}
+  .msg.info{background:#faf7f7; border:1px solid #e6dede; color:#3a3a3a;}
+
+  .steps{font-size:12.5px; color:var(--muted); line-height:1.9; margin:0; padding-left:18px;}
+
+  .result-bar{
+    display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;
+    background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:16px;
+  }
+  .result-bar .who{font-size:14px; font-weight:700;}
+  .result-bar .who span{display:block; font-size:12px; color:var(--muted); font-weight:500; margin-top:2px;}
+
+  /* ---- verify view ---- */
+  .vstat{text-align:center; padding:8px 0 18px;}
+  .vstat .ic{
+    width:64px; height:64px; border-radius:50%; display:inline-flex; align-items:center;
+    justify-content:center; font-size:30px; color:#fff; margin-bottom:12px;
+  }
+  .vstat.ok .ic{background:var(--ok);} .vstat.bad .ic{background:var(--bad);}
+  .vstat h2{margin:0 0 4px; font-size:20px;}
+  .vstat.ok h2{color:var(--ok);} .vstat.bad h2{color:var(--bad);}
+  .vstat p{margin:0; font-size:13px; color:var(--muted);}
+  table.v{width:100%; border-collapse:collapse; font-size:13.5px; margin-top:6px;}
+  table.v th,table.v td{border-bottom:1px solid var(--line); padding:11px 6px; text-align:left; vertical-align:top;}
+  table.v th{width:34%; color:var(--muted); font-weight:600; font-size:12.5px;}
+
+  .foot-note{font-size:11.5px; color:#8a97a6; text-align:center; line-height:1.7; margin-top:26px;}
+
+  /* ================= LETTER (A4) ================= */
+  .preview-wrap{display:flex; flex-direction:column; gap:20px; align-items:center;}
+  .page{
+    width:210mm; height:297mm; background:#fff; padding:14mm 16mm 10mm;
+    box-shadow:0 4px 20px rgba(22,32,44,.14); position:relative; overflow:hidden;
+    font-family:'Pretendard','Noto Serif KR','Apple SD Gothic Neo','Malgun Gothic',serif;
+    color:#11181f;
+  }
+  .page-inner{display:flex; flex-direction:column; min-height:273mm;}
+  .doc-head{border-bottom:3px double var(--navy); padding-bottom:10px; margin-bottom:4px;}
+  .doc-head .brands{display:flex; align-items:flex-end; justify-content:space-between; gap:14px;}
+  .brandblock .kr{font-size:14px; font-weight:800; color:var(--navy); letter-spacing:-.01em;}
+  .brandblock .en{font-size:9.5px; color:var(--muted); letter-spacing:.03em; margin-top:2px;}
+  .eventtag{text-align:right; font-size:10px; color:var(--navy); font-weight:700; letter-spacing:.05em; line-height:1.5;}
+  .eventtag .badge{
+    display:inline-block; background:#0a0a0a; color:#fff; padding:3px 8px; border-radius:4px;
+    letter-spacing:.08em; font-size:9.5px; margin-bottom:4px;
+  }
+  .docno{display:flex; justify-content:space-between; font-size:10px; color:var(--muted); margin:7px 0 14px;}
+  .doc-title{text-align:center; margin:2px 0 13px;}
+  .doc-title h2{font-size:19px; font-weight:800; letter-spacing:.14em; color:#0d1a28; margin:0;}
+  .doc-title .sub{font-size:10px; color:var(--muted); letter-spacing:.09em; margin-top:5px; text-transform:uppercase;}
+  .doc-title .rule{width:52px; height:2.5px; background:var(--accent); margin:8px auto 0; border-radius:2px;}
+  .addr{font-size:11.5px; margin-bottom:12px; line-height:1.7;}
+  .body-txt{font-size:11px; line-height:1.7; text-align:justify;}
+  .body-txt p{margin:0 0 6px;}
+  .body-txt .en{font-size:10px; color:#4a5866; line-height:1.6;}
+  table.t{width:100%; border-collapse:collapse; margin:8px 0 4px; font-size:10.5px; table-layout:fixed;}
+  table.t th,table.t td{border:1px solid #d8d2d2; padding:3px 7px; vertical-align:middle; word-break:break-word;}
+  table.t th{background:#f6f2f2; color:var(--navy); font-weight:700; text-align:left; white-space:nowrap; line-height:1.25;}
+  table.t th .e{display:block; font-size:8px; color:#7b8896; font-weight:600; line-height:1.2;}
+  table.t td{background:#fff;}
+  .tcap{
+    font-size:10.5px; font-weight:800; color:var(--navy); letter-spacing:.06em;
+    border-left:3px solid var(--accent); padding-left:8px; margin-top:12px;
+  }
+  .tcap span{color:var(--muted); font-weight:600;}
+  .req{
+    background:#faf7f7; border:1px solid #e6dede; border-left:3px solid var(--accent);
+    padding:8px 11px; font-size:10.5px; line-height:1.65; margin:9px 0 6px;
+  }
+  .req .en{font-size:9.5px; color:#4a5866; margin-top:4px; display:block; line-height:1.55;}
+  .signature{margin-top:auto; padding-top:12px; text-align:center;}
+  .signature .date{font-size:11.5px; letter-spacing:.06em; margin-bottom:11px;}
+  .signature .org{font-size:13.5px; font-weight:800; color:#0d1a28;}
+  .signature .org .en{display:block; font-size:9.5px; color:var(--muted); font-weight:600; letter-spacing:.05em; margin-top:2px;}
+  .signature .who2{font-size:13.5px; font-weight:800; margin-top:8px; letter-spacing:.04em; display:inline-flex; align-items:center; gap:2px;}
+  .seal{
+    width:19mm; height:19mm; object-fit:contain; margin-left:-3px;
+    mix-blend-mode:multiply; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .foot{
+    margin-top:14px; border-top:1px solid var(--line); padding-top:8px;
+    font-size:9px; color:#7b8896; display:flex; justify-content:space-between; gap:12px; line-height:1.5;
+  }
+  .qrbox{display:flex; align-items:center; gap:8px; text-align:left; white-space:nowrap;}
+  .qrbox svg{width:17mm; height:17mm; display:block;}
+  .qrbox .qt{font-size:8px; line-height:1.45; color:#7b8896;}
+  .qrbox .qt b{display:block; color:var(--navy); font-size:8.5px;}
+
+  @media (max-width:1080px){
+    .page{width:100%; height:auto; padding:12mm; overflow:visible;}
+    .preview-wrap{margin:0 -6px;}
+  }
+  @media print{
+    @page{size:A4; margin:0;}
+    body{background:#fff;}
+    .noprint{display:none !important;}
+    .wrap{max-width:none; padding:0; margin:0;}
+    .preview-wrap{gap:0;}
+    .page{width:210mm; height:297mm; box-shadow:none; margin:0; page-break-after:always; break-after:page;}
+    .page:last-child{page-break-after:auto; break-after:auto;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar noprint">
+  <a href="/"><img class="logo" src="../../roboravekorea-logo.png" alt="RoboRAVE Korea"
+     onerror="this.style.display='none'"></a>
+  <div class="divider"></div>
+  <div>
+    <h1>대만 오픈 2026 · 초청장 발급</h1>
+    <div class="sub">RoboRAVE Taiwan Open 2026 &nbsp;·&nbsp; 로보레이브 코리아 · 국제로봇교육협의회</div>
+  </div>
+  <a class="home" href="/taiwan-2026/">접수 페이지로</a>
+</div>
+
+<div class="wrap">
+
+  <!-- ============ 조회 폼 ============ -->
+  <div id="lookupView">
+    <div class="card noprint">
+      <h2>참가자 초청장 발급</h2>
+      <p class="lead">RoboRAVE Taiwan Open 2026 한국 참가단으로 접수된 참가자 본인의 초청장을 발급합니다.<br>
+        성명과 생년월일을 입력하시면 등록된 명단에서 확인 후 발급됩니다.</p>
+
+      <div class="msg err" id="errBox"></div>
+
+      <div class="row">
+        <div class="field">
+          <label>성명 (신청 시 등록한 국문 이름)</label>
+          <input type="text" id="qName" placeholder="홍길동" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>생년월일</label>
+          <input type="text" id="qBirth" placeholder="2011-03-15" inputmode="numeric" autocomplete="off">
+          <div class="hint">숫자만 입력해도 됩니다 (예: 20110315)</div>
+        </div>
+      </div>
+
+      <label style="margin-bottom:8px;">발급할 문서</label>
+      <div class="choice" id="docChoice">
+        <label class="on"><input type="radio" name="mode" value="school" checked>
+          <span><span class="t">학교 제출용 (공결·출석인정)</span>
+          <span class="d">대회 참가 확인 및 출석인정결석 협조 요청서 (학생용)</span></span></label>
+        <label><input type="radio" name="mode" value="visa">
+          <span><span class="t">대만 입국 참고용</span>
+          <span class="d">여권정보·체류기간이 포함된 참가 초청 확인서 (국·영문) — 인솔자·보호자 포함</span></span></label>
+        <label><input type="radio" name="mode" value="both">
+          <span><span class="t">두 가지 모두</span>
+          <span class="d">학교 제출용 + 대만 입국 참고용 2매를 함께 발급</span></span></label>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>학교·소속 (문서에 인쇄될 이름)</label>
+          <input type="text" id="qSchool" placeholder="예) 서울하늘빛초등학교" autocomplete="off">
+          <div class="hint">공문에 그대로 인쇄됩니다. 정식 명칭으로 적어 주세요.</div>
+        </div>
+        <div class="field">
+          <label>학년 / 반</label>
+          <input type="text" id="qGrade" placeholder="예) 5학년 3반" autocomplete="off">
+          <div class="hint">비워두면 생년월일 기준으로 자동 계산됩니다.</div>
+        </div>
+      </div>
+
+      <div id="visaFields" style="display:none;">
+        <div class="row">
+          <div class="field"><label>여권번호</label>
+            <input type="text" id="qPassport" placeholder="M12345678" autocomplete="off"></div>
+          <div class="field"><label>여권상 영문 성명</label>
+            <input type="text" id="qNameEn" placeholder="HONG GILDONG" autocomplete="off"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>대만 입국 예정일</label><input type="date" id="qDepart" value="2026-12-11"></div>
+          <div class="field"><label>대만 출국 예정일</label><input type="date" id="qReturn" value="2026-12-14"></div>
+        </div>
+        <div class="field"><label>체류 예정지</label>
+          <input type="text" id="qStay" placeholder="타오위안 중리(中壢) 지역 호텔 (Zhongli District, Taoyuan, Taiwan)"></div>
+        <div class="hint" style="margin:-6px 0 15px;">여권정보는 이 브라우저에서 문서를 만드는 데에만 쓰이며 어디에도 저장·전송되지 않습니다.</div>
+      </div>
+
+      <label class="agree">
+        <input type="checkbox" id="qAgree">
+        <span>본인은 대회 참가 목적의 증빙 서류 발급을 위해 위 정보가 사용되는 것에 동의합니다.
+          입력한 정보는 서버로 전송되지 않고 이용자의 기기 안에서만 처리됩니다.</span>
+      </label>
+
+      <button class="btn btn-primary" id="btnLookup">초청장 발급하기</button>
+    </div>
+
+    <div class="card noprint" style="padding:20px 26px;">
+      <h2 style="font-size:15px; margin-bottom:10px;">안내</h2>
+      <ol class="steps">
+        <li>명단은 대만 오픈 참가 접수 정보를 기준으로 등록되어 있으며, 접수가 확인된 분부터 순차적으로 추가됩니다.</li>
+        <li>조회되지 않는 경우 신청 시 기재한 이름·생년월일과 다를 수 있으니 아래로 문의해 주세요.</li>
+        <li>발급된 문서 하단의 QR코드로 학교·기관에서 진위를 확인할 수 있습니다.</li>
+        <li>문의 : <a href="mailto:robot-league@naver.com">robot-league@naver.com</a></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ============ 발급 결과 ============ -->
+  <div id="resultView" style="display:none;">
+    <div class="result-bar noprint">
+      <div class="who" id="resultWho"></div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn btn-soft" id="btnBack">다시 조회</button>
+        <button class="btn btn-soft" id="btnPrint" style="background:var(--accent); color:#fff; border-color:var(--accent);">인쇄 / PDF 저장</button>
+      </div>
+    </div>
+    <div class="msg info show noprint" style="margin-bottom:16px;">
+      인쇄창에서 <b>“배경 그래픽”</b> 옵션을 켜야 직인과 표 배경이 함께 인쇄됩니다.
+      PDF로 보관하시려면 인쇄 대상에서 <b>“PDF로 저장”</b>을 선택하세요.
+    </div>
+    <div class="preview-wrap" id="preview"></div>
+  </div>
+
+  <!-- ============ 진위확인 ============ -->
+  <div id="verifyView" style="display:none;">
+    <div class="card">
+      <div class="vstat" id="vstat"></div>
+      <table class="v" id="vtable"></table>
+      <p class="hint" id="vnote" style="margin-top:18px;"></p>
+    </div>
+  </div>
+
+  <div class="foot-note noprint">
+    로보레이브 코리아 · 국제로봇교육협의회 &nbsp;|&nbsp; robot-league@naver.com<br>
+    RoboRAVE Taiwan Open 2026 · National Central University, Taoyuan, Taiwan
+  </div>
+</div>
+
+<script src="../qrcode-svg.min.js"></script>
+
+<script>
+(function(){
+  "use strict";
+
+  var SEAL_SRC="../../certificate/seal.png";
+  var R = null;
+
+  /* ---------- utils ---------- */
+  function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+  function $(id){return document.getElementById(id);}
+  function b64d(s){var b=atob(s),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a;}
+  function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){
+    return ("0"+b.toString(16)).slice(-2);}).join("");}
+  function normName(s){return String(s||"").replace(/\s+/g,"").toLowerCase();}
+  function normBirth(s){
+    var d=String(s||"").replace(/\D/g,"");
+    if(d.length===8) return d.slice(0,4)+"-"+d.slice(4,6)+"-"+d.slice(6,8);
+    return String(s||"").trim();
+  }
+  async function sha16(s){
+    var h=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));
+    return hex(h).slice(0,16);
+  }
+  async function deriveKey(pass,saltB64,iter){
+    var km=await crypto.subtle.importKey("raw",new TextEncoder().encode(pass),"PBKDF2",false,["deriveKey"]);
+    return crypto.subtle.deriveKey(
+      {name:"PBKDF2",salt:b64d(saltB64),iterations:iter,hash:"SHA-256"},
+      km,{name:"AES-GCM",length:256},false,["decrypt"]);
+  }
+  async function decrypt(ctB64,key){
+    var raw=b64d(ctB64), iv=raw.slice(0,12), data=raw.slice(12);
+    var out=await crypto.subtle.decrypt({name:"AES-GCM",iv:iv},key,data);
+    return JSON.parse(new TextDecoder().decode(out));
+  }
+
+  /* ---------- date helpers ---------- */
+  var MON=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var DOW=["일","월","화","수","목","금","토"];
+  function parseD(s){var p=String(s||"").split("-");if(p.length!==3)return null;
+    var d=new Date(+p[0],+p[1]-1,+p[2]);return isNaN(d.getTime())?null:d;}
+  function kDate(s,dow){var d=parseD(s);if(!d)return "—";
+    var t=d.getFullYear()+"년 "+(d.getMonth()+1)+"월 "+d.getDate()+"일";
+    return dow?t+"("+DOW[d.getDay()]+")":t;}
+  function eDate(s){var d=parseD(s);if(!d)return "—";return MON[d.getMonth()]+" "+d.getDate()+", "+d.getFullYear();}
+  function isoDate(s){var d=parseD(s);if(!d)return "—";
+    return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);}
+  function nights(a,b){var x=parseD(a),y=parseD(b);if(!x||!y)return null;return Math.round((y-x)/86400000);}
+  function todayISO(){var t=new Date();
+    return t.getFullYear()+"-"+("0"+(t.getMonth()+1)).slice(-2)+"-"+("0"+t.getDate()).slice(-2);}
+  /* 생년월일 → 2026학년도 기준 학년 추정 */
+  function autoGrade(birth){
+    var d=parseD(birth); if(!d) return "";
+    var y=d.getFullYear(), g=2026-y-6;
+    if(g>=1 && g<=6) return "초등학교 "+g+"학년";
+    if(g>=7 && g<=9) return "중학교 "+(g-6)+"학년";
+    if(g>=10 && g<=12) return "고등학교 "+(g-9)+"학년";
+    return "";
+  }
+  /* 한글 학교명이면 "○○초등학교장 귀하", 아니면 "학교장 귀하" */
+  function recipientOf(school){
+    if(school && /[가-힣]/.test(school)){
+      var t=school.replace(/\s+$/,"");
+      return /(학교|학원|기관|센터|아카데미)$/.test(t) ? t+"장 귀하" : t+" 귀하";
+    }
+    return "학교장 귀하";
+  }
+  function josa(w,a,b){if(!w)return b;var c=w.charCodeAt(w.length-1);
+    if(c<0xAC00||c>0xD7A3)return b;return ((c-0xAC00)%28)?a:b;}
+
+  /* ---------- letter rendering ---------- */
+  var E = {};
+  function ev(k,d){ return (E[k]!==undefined && E[k]!=="") ? E[k] : d; }
+  function evKr(){return ev("kr","RoboRAVE Taiwan Open 2026");}
+  function evEn(){return ev("en","RoboRAVE Taiwan Open 2026");}
+  function evStart(){return ev("start","2026-12-12");}
+  function evEnd(){return ev("end","2026-12-13");}
+  function org1(){return ev("org1","로보레이브 코리아");}
+  function org2(){return ev("org2","국제로봇교육협의회");}
+  function signer(){return ev("signer","국제로봇교육협의회장");}
+  function cityKr(){return ev("city_kr","대만 타오위안");}
+  function cityEn(){return ev("city_en","Taoyuan, Taiwan");}
+  function countryKr(){return ev("country_kr","대만");}
+  function orgLine(){var a=org1(),b=org2();
+    return b?esc(a)+josa(a,"과","와")+" "+esc(b):esc(a);}
+
+  var COLS='<colgroup><col style="width:19%"><col style="width:31%">'+
+           '<col style="width:19%"><col style="width:31%"></colgroup>';
+  function th(kr,en){return '<th>'+esc(kr)+'<span class="e">'+esc(en)+'</span></th>';}
+
+  function docHead(no,issued){
+    return '<div class="doc-head"><div class="brands">'+
+      '<div class="brandblock"><div class="kr">'+esc(org1())+' · '+esc(org2())+'</div>'+
+      '<div class="en">RoboRAVE Korea &nbsp;·&nbsp; International Robotics Educational Association (IREA)</div></div>'+
+      '<div class="eventtag"><span class="badge">'+esc(ev("badge","TAIWAN OPEN 2026"))+'</span><br>'+esc(ev("badge_sub","TAOYUAN, TAIWAN"))+'<br>'+
+      esc(kDate(evStart()))+' – '+esc(kDate(evEnd()).replace(/^\d+년 /,""))+'</div></div></div>'+
+      '<div class="docno"><span>문서번호 / Ref. No. &nbsp;'+esc(no)+'</span>'+
+      '<span>발급일 / Date of Issue &nbsp;'+esc(issued)+'</span></div>';
+  }
+  function eventTable(){
+    return '<table class="t">'+COLS+
+      '<tr>'+th("대회명","Event")+'<td colspan="3"><b>'+esc(evKr())+'</b> &nbsp;/&nbsp; '+esc(evEn())+'</td></tr>'+
+      '<tr>'+th("기간","Date")+'<td colspan="3">'+esc(kDate(evStart(),true))+' ~ '+esc(kDate(evEnd(),true))+
+        ' &nbsp;('+esc(eDate(evStart()))+' – '+esc(eDate(evEnd()))+')</td></tr>'+
+      '<tr>'+th("장소","Venue")+'<td colspan="3">'+esc(ev("venue","국립중앙대학교 이런관 (National Central University, Yiren Hall)"))+
+        ' &nbsp;·&nbsp; '+esc(ev("addr","No. 300, Zhongda Rd., Zhongli District, Taoyuan City 320317, Taiwan"))+'</td></tr>'+
+      '<tr>'+th("주최","Organizer")+'<td>'+esc(ev("organizer","RoboRAVE Taiwan · 국립중앙대학교"))+'</td>'+
+        th("비고","Remarks")+'<td>'+esc(ev("note","12/12(토) 11:00 개시 · 12/13(일) 16:00 종료"))+'</td></tr>'+
+      '<tr>'+th("한국 참가단 운영","Korean Delegation")+'<td colspan="3">'+
+        esc(org1())+' · '+esc(org2())+' &nbsp;(RoboRAVE Korea · IREA)</td></tr>'+
+    '</table>';
+  }
+  function personTable(p,withVisa){
+    var h='<table class="t">'+COLS+
+      '<tr>'+th("성명","Full Name")+'<td colspan="3"><b>'+esc(p.nameKr||"—")+'</b>'+
+        (p.nameEn?' &nbsp;/&nbsp; '+esc(p.nameEn):'')+'</td></tr>'+
+      '<tr>'+th("생년월일","Date of Birth")+'<td>'+esc(kDate(p.birth))+'</td>'+
+        th("성별","Gender")+'<td>'+esc(p.gender||"—")+'</td></tr>'+
+      '<tr>'+th("소속","School")+'<td>'+esc(p.school||"—")+'</td>'+
+        th("학년 / 반","Grade")+'<td>'+esc(p.grade||"—")+'</td></tr>'+
+      '<tr>'+th("팀명","Team")+'<td>'+esc(p.team||"—")+'</td>'+
+        th("참가 종목","Challenge")+'<td>'+esc(p.event||"—")+'</td></tr>'+
+      '<tr>'+th("참가 자격","Role")+'<td colspan="3">'+esc(p.role||"선수 (Student Competitor)")+'</td></tr>';
+    if(withVisa){
+      var n=nights(p.depart,p.ret);
+      h+='<tr>'+th("국적","Nationality")+'<td>'+esc(p.nationality||"대한민국 (Republic of Korea)")+'</td>'+
+         th("여권번호","Passport No.")+'<td>'+esc(p.passport||"—")+'</td></tr>'+
+         '<tr>'+th("체류 기간","Period of Stay")+'<td colspan="3">'+esc(isoDate(p.depart))+' ~ '+esc(isoDate(p.ret))+
+           (n!==null?' &nbsp;('+n+'박 '+(n+1)+'일 / '+n+' nights)':'')+'</td></tr>'+
+         '<tr>'+th("체류 예정지","Accommodation")+'<td colspan="3">'+esc(p.stay||"—")+'</td></tr>';
+    }
+    return h+'</table>';
+  }
+  function signature(issued){
+    return '<div class="signature">'+
+      '<div class="date">'+esc(kDate(issued))+' &nbsp;/&nbsp; '+esc(eDate(issued))+'</div>'+
+      '<div class="org">'+esc(org1())+'&nbsp; ·&nbsp; '+esc(org2())+
+      '<span class="en">ROBORAVE KOREA&nbsp; ·&nbsp; INTERNATIONAL ROBOTICS EDUCATIONAL ASSOCIATION</span></div>'+
+      '<div class="who2">'+esc(signer())+
+      (SEAL_SRC?'<img class="seal" src="'+SEAL_SRC+'" alt="직인">':'')+'</div></div>';
+  }
+  function qrSvg(url){
+    try{
+      var q=qrcode(0,"M"); q.addData(url); q.make();
+      return q.createSvgTag({cellSize:2,margin:0,scalable:true});
+    }catch(e){ return ""; }
+  }
+  function foot(no,key){
+    var base=(E.base||"").trim() || location.href.split("#")[0].split("?")[0];
+        var url=base+"?v="+encodeURIComponent(no)+"&k="+encodeURIComponent(key);
+    return '<div class="foot">'+
+      '<div class="qrbox">'+qrSvg(url)+
+        '<span class="qt"><b>발급 진위확인 / Verify</b>QR코드를 스캔하면 본 문서의<br>발급 내역을 확인할 수 있습니다.<br>'+esc(no)+'</span></div>'+
+      '<span style="text-align:right; align-self:flex-end;">본 문서는 '+esc(org1())+'가 발급한 공식 문서입니다.<br>'+
+        'RoboRAVE Korea · robot-league@naver.com</span></div>';
+  }
+
+  function schoolLetter(p,no,issued,key,vno){
+    return '<div class="page"><div class="page-inner">'+docHead(no,issued)+
+      '<div class="doc-title"><h2>참가 확인 및 출석인정 협조 요청서</h2>'+
+      '<div class="sub">Letter of Invitation &amp; Request for Excused Absence</div><div class="rule"></div></div>'+
+      '<div class="addr"><b>수신 :</b> '+esc(recipientOf(p.school))+'<br>'+
+      '<b>제목 :</b> '+esc(evKr())+'('+esc(cityKr())+') 참가에 따른 출석인정결석 처리 협조 요청</div>'+
+      '<div class="body-txt">'+
+      '<p>1. 귀 교(기관)의 무궁한 발전을 기원합니다.</p>'+
+      '<p>2. '+orgLine()+'는 미국에서 시작되어 현재 세계 18개국 30개 이상의 도시에서 개최되고 있는 국제 로봇교육 프로그램 <b>RoboRAVE</b>의 대한민국 운영기관입니다.</p>'+
+      '<p>3. 아래 학생은 '+orgLine()+'가 구성·인솔하는 대한민국 참가단의 일원으로 <b>'+esc(evKr())+'</b>('+esc(cityKr())+')에 참가함을 확인합니다.</p>'+
+      '<p class="en">This is to certify that the student named below is a registered member of the Korean delegation to the '+esc(evEn())+', to be held in '+esc(cityEn())+'.</p></div>'+
+      '<div class="tcap">대회 개요 <span>/ Event Details</span></div>'+eventTable()+
+      '<div class="tcap">참가자 정보 <span>/ Participant Information</span></div>'+personTable(p,false)+
+      '<div class="req">4. 본 대회는 국제 규모의 교육·경진 행사로서 학생의 창의적 문제해결력과 국제적 소양 함양에 기여하는 바가 크므로, 참가 기간 및 이동일에 대하여 <b>출석인정결석(공결)</b> 처리를 협조하여 주시기 바랍니다.'+
+      '<span class="en">We kindly request your understanding and cooperation in granting an excused absence for the competition period and the associated travel days.</span></div>'+
+      signature(issued)+foot(vno||no,key)+'</div></div>';
+  }
+  function visaLetter(p,no,issued,key,vno){
+    var n=nights(p.depart,p.ret);
+    return '<div class="page"><div class="page-inner">'+docHead(no,issued)+
+      '<div class="doc-title"><h2>참 가 초 청 확 인 서</h2>'+
+      '<div class="sub">Letter of Invitation / Certificate of Participation</div><div class="rule"></div></div>'+
+      '<div class="addr"><b>수신 :</b> 관계자 제위 &nbsp;/&nbsp; <b>To :</b> To Whom It May Concern<br>'+
+      '<b>제목 :</b> '+esc(evKr())+'('+esc(cityKr())+') 참가 확인 및 '+esc(countryKr())+' 방문 협조 요청</div>'+
+      '<div class="body-txt">'+
+      '<p>'+orgLine()+'는 <b>'+esc(evEn())+'</b>('+esc(cityKr())+')에 참가하는 대한민국 참가단의 운영기관으로서, 아래 인원이 본 대회의 정식 참가자(참가단 일원)임을 확인합니다.</p>'+
+      '<p class="en">'+esc(org1())+' (RoboRAVE Korea), together with the International Robotics Educational Association (IREA), hereby certifies that the person named below is a registered participant (member of the Korean delegation) of the '+esc(evEn())+', and will travel to '+esc(cityEn())+' solely for the purpose of attending this educational robotics competition.</p></div>'+
+      '<div class="tcap">대회 개요 <span>/ Event Details</span></div>'+eventTable()+
+      '<div class="tcap">참가자 정보 <span>/ Participant Information</span></div>'+personTable(p,true)+
+      '<div class="req">상기 참가자는 본 대회 참가만을 목적으로 '+esc(countryKr())+'에 체류하며, '+
+      (n!==null?'<b>'+esc(isoDate(p.ret))+'</b>':'예정된 일정')+'에 대한민국으로 귀국할 예정입니다. 체류 중 소요되는 항공·숙박·식비 등 일체의 비용은 참가자 본인 및 소속 가정에서 부담합니다. 입국 절차에 협조하여 주시기를 정중히 요청드립니다.'+
+      '<span class="en">The participant will stay in '+esc(ev("country_en","Taiwan"))+' for the sole purpose of attending the above competition and will return to the Republic of Korea on the scheduled date. All travel, accommodation and living expenses are borne by the participant and his/her family. We respectfully request your kind consideration and assistance with the entry procedures.</span></div>'+
+      signature(issued)+foot(vno||no,key)+'</div></div>';
+  }
+
+  var A4H=297/25.4*96, PADV=(14+10)/25.4*96, INNER=273;
+  function autofit(){
+    if(window.innerWidth<=1080) return;
+    var limit=A4H-PADV;
+    Array.prototype.forEach.call(document.querySelectorAll(".page-inner"),function(el){
+      var z=1; el.style.zoom=1; el.style.minHeight=INNER+"mm";
+      while(el.getBoundingClientRect().height>limit+1 && z>0.66){
+        z=Math.round((z-0.02)*100)/100;
+        el.style.zoom=z; el.style.minHeight=(INNER/z)+"mm";
+      }
+    });
+  }
+
+  /* ---------- lookup ---------- */
+  function showErr(m){var b=$("errBox");b.innerHTML=m;b.classList.add("show");}
+  function hideErr(){$("errBox").classList.remove("show");}
+
+  function currentMode(){
+    var r=document.querySelector('input[name="mode"]:checked');
+    return r?r.value:"school";
+  }
+  function syncVisa(){
+    $("visaFields").style.display = (currentMode()==="school")?"none":"block";
+    Array.prototype.forEach.call(document.querySelectorAll("#docChoice label"),function(l){
+      l.classList.toggle("on", l.querySelector("input").checked);
+    });
+  }
+  document.addEventListener("change",function(e){ if(e.target.name==="mode") syncVisa(); });
+
+  async function doLookup(){
+    hideErr();
+    if(!R || !R.records){
+      showErr("참가자 명단이 아직 등록되지 않았습니다. 잠시 후 다시 시도하시거나 robot-league@naver.com 으로 문의해 주세요.");
+      return;
+    }
+    if(!window.crypto || !crypto.subtle){
+      showErr("이 브라우저에서는 발급이 지원되지 않습니다. Chrome, Edge, Safari 최신 버전을 이용해 주세요.");
+      return;
+    }
+    var name=$("qName").value.trim(), birth=normBirth($("qBirth").value);
+    if(!name || !/^\d{4}-\d{2}-\d{2}$/.test(birth)){
+      showErr("성명과 생년월일을 정확히 입력해 주세요. (생년월일 예: 2011-03-15)"); return;
+    }
+    if(!$("qAgree").checked){ showErr("정보 이용 동의에 체크해 주세요."); return; }
+
+    var btn=$("btnLookup"); btn.disabled=true; btn.textContent="확인하는 중…";
+    try{
+      var pass=normName(name)+"|"+birth;
+      var idx=await sha16(pass);
+      var rec=null;
+      for(var i=0;i<R.records.length;i++){ if(R.records[i].i===idx){ rec=R.records[i]; break; } }
+      if(!rec){
+        showErr("등록된 명단에서 확인되지 않습니다.<br>신청 시 기재한 이름·생년월일과 동일한지 확인해 주시고, 계속 조회되지 않으면 <a href='mailto:robot-league@naver.com'>robot-league@naver.com</a> 으로 문의해 주세요.");
+        return;
+      }
+      var key=await deriveKey(pass,R.salt,R.iter);
+      var p;
+      try{ p=await decrypt(rec.d,key); }
+      catch(e){ showErr("정보를 확인할 수 없습니다. 잠시 후 다시 시도해 주세요."); return; }
+
+      /* 참가자가 직접 입력한 항목 반영 */
+      var sc=$("qSchool").value.trim();
+      if(sc) p.school=sc;
+      var gr=$("qGrade").value.trim();
+      p.grade = gr || p.grade || autoGrade(p.birth);
+      var m=currentMode();
+      if(p.adult && m!=="visa"){ showErr("인솔자·보호자는 <b>대만 입국 참고용</b> 문서만 발급됩니다. 발급할 문서에서 ‘대만 입국 참고용’을 선택해 주세요."); return; }
+      if(!p.adult && !p.school){ showErr("학교·소속을 입력해 주세요. 문서에 그대로 인쇄됩니다."); return; }
+      if(m!=="school"){
+        p.passport=$("qPassport").value.trim()||p.passport||"";
+        p.nameEn=$("qNameEn").value.trim()||p.nameEn||"";
+        p.depart=$("qDepart").value||p.depart||"";
+        p.ret=$("qReturn").value||p.ret||"";
+        p.stay=$("qStay").value.trim()||p.stay||"";
+        if(!p.passport){ showErr("입국·비자 참고용 문서에는 여권번호가 필요합니다."); return; }
+        if(!p.depart||!p.ret){ showErr("대만 입국일과 출국일을 입력해 주세요."); return; }
+      }
+      renderResult(p,rec,m);
+    } finally {
+      btn.disabled=false; btn.textContent="초청장 발급하기";
+    }
+  }
+
+  function renderResult(p,rec,m){
+    var issued=todayISO(), out=[];
+    var noA = (m==="both") ? rec.n+" (1/2)" : rec.n;
+    var noB = (m==="both") ? rec.n+" (2/2)" : rec.n;
+    if(m==="school"||m==="both") out.push(schoolLetter(p,noA,issued,rec.k,rec.n));
+    if(m==="visa"||m==="both") out.push(visaLetter(p,noB,issued,rec.k,rec.n));
+    $("preview").innerHTML=out.join("");
+    $("resultWho").innerHTML=esc(p.nameKr)+' 님 초청장 <span>'+esc(p.school||"")+
+      (p.team?" · "+esc(p.team):"")+' · 문서번호 '+esc(rec.n)+'</span>';
+    $("lookupView").style.display="none";
+    $("resultView").style.display="block";
+    autofit();
+    window.scrollTo(0,0);
+  }
+
+  /* ---------- verify ---------- */
+  async function runVerify(no,k){
+    $("lookupView").style.display="none";
+    $("verifyView").style.display="block";
+    function paint(ok,title,desc,rows,note){
+      $("vstat").className="vstat "+(ok?"ok":"bad");
+      $("vstat").innerHTML='<div class="ic">'+(ok?"&#10003;":"!")+'</div><h2>'+esc(title)+'</h2><p>'+desc+'</p>';
+      $("vtable").innerHTML=rows||"";
+      $("vnote").innerHTML=note||"";
+    }
+    if(!R || !R.verify){
+      paint(false,"확인할 수 없습니다","발급 내역을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.");
+      return;
+    }
+    try{
+      var vh=await sha16(no+"|"+k);
+      var row=null;
+      for(var i=0;i<R.verify.length;i++){ if(R.verify[i].h===vh){ row=R.verify[i]; break; } }
+      if(!row){
+        paint(false,"발급 내역이 없습니다",
+          "입력된 문서번호로 발급된 기록을 찾을 수 없습니다. 문서의 QR코드를 다시 스캔하시거나 발급기관에 확인해 주세요.");
+        return;
+      }
+      var key=await deriveKey(no+"|"+k,R.salt,R.iter);
+      var v=await decrypt(row.d,key);
+      paint(true,"정상 발급된 문서입니다",
+        "로보레이브 코리아 · 국제로봇교육협의회가 발급한 문서로 확인되었습니다.",
+        '<tr><th>문서번호</th><td>'+esc(no)+'</td></tr>'+
+        '<tr><th>성명</th><td>'+esc(v.name)+'</td></tr>'+
+        '<tr><th>소속</th><td>'+esc(v.school||"—")+'</td></tr>'+
+        '<tr><th>팀 / 종목</th><td>'+esc((v.team||"—")+(v.event?" · "+v.event:""))+'</td></tr>'+
+        '<tr><th>참가 대회</th><td>'+esc(evKr())+'<br>'+esc(kDate(evStart(),true))+' ~ '+esc(kDate(evEnd(),true))+'</td></tr>'+
+        '<tr><th>발급기관</th><td>'+esc(org1())+' · '+esc(org2())+'</td></tr>',
+        "개인정보 보호를 위해 성명 일부는 가려서 표시됩니다. 추가 확인이 필요하시면 robot-league@naver.com 으로 문의해 주세요.");
+    }catch(e){
+      paint(false,"확인할 수 없습니다","문서번호 또는 확인코드가 올바르지 않습니다.");
+    }
+  }
+
+  /* ---------- boot ---------- */
+  window.__bootApp = function(){
+  R = window.ROSTER || null;
+  E = (R && R.event) || {};
+  $("btnLookup").addEventListener("click",doLookup);
+  $("qBirth").addEventListener("keydown",function(e){ if(e.key==="Enter") doLookup(); });
+  $("qName").addEventListener("keydown",function(e){ if(e.key==="Enter") $("qBirth").focus(); });
+  $("btnPrint").addEventListener("click",function(){ window.print(); });
+  $("btnBack").addEventListener("click",function(){
+    $("resultView").style.display="none"; $("lookupView").style.display="block"; window.scrollTo(0,0);
+  });
+  window.addEventListener("resize",function(){ if($("resultView").style.display!=="none") autofit(); });
+  syncVisa();
+
+  var qs=new URLSearchParams(location.search);
+  if(qs.get("v")){ runVerify(qs.get("v"), qs.get("k")||""); }
+  else if(window.__ROSTER_MISSING__ || !R){
+    /* 명단 파일이 아직 없을 때 안내 */
+    $("errBox").innerHTML="참가자 명단을 불러오지 못했습니다. 페이지를 새로고침해 주시고, 계속 같은 화면이 나오면 <a href='mailto:robot-league@naver.com'>robot-league@naver.com</a> 으로 알려 주세요.";
+    $("errBox").classList.add("show");
+  }
+  };
+})();
+
+/* 명단 파일은 항상 최신본을 받아온다 (브라우저 캐시 무시) */
+(function(){
+  var s=document.createElement("script");
+  s.src="roster.js?t="+(new Date().getTime());
+  s.onload=function(){ window.__bootApp(); };
+  s.onerror=function(){ window.__ROSTER_MISSING__=true; window.__bootApp(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>
